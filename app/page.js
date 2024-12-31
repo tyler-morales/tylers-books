@@ -1,9 +1,13 @@
 "use client";
 
 import Book from "./Book";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const containerRef = useRef(null);
+  const inputRef = useRef("");
+
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState({ title: "asc", dateFinished: "asc", year: "asc" });
   const [selectedBook, setSelectedBook] = useState(null);
@@ -48,20 +52,42 @@ export default function Home() {
   };
 
   const handleSelectBook = (book) => {
-    if (selectedBook === book) {
-      setSelectedBook(null);
-      return;
-    }
-    setSelectedBook(book);
+    setSelectedBook(selectedBook === book ? null : book);
   };
 
-  const handleShuffleBooks = () => {
+  const handleShuffleBooks = useCallback(() => {
     setBooks(shuffleArray([...books]));
-  };
+  }, [books]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const searchKey = "/";
+      const shuffleKey = "8";
+
+      // Shuffle Books: cmd + 8
+      if (event.metaKey && event.key === shuffleKey) {
+        event.preventDefault();
+        handleShuffleBooks();
+      }
+
+      // Focus search input: /
+      if (event.key === searchKey) {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+
+    // Attach the keydown listener
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup the listener on unmount
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleShuffleBooks]);
 
   const filteredBooks = books.filter(
     (book) =>
@@ -77,7 +103,7 @@ export default function Home() {
       <div className="flex gap-2">
         <button
           onClick={() => sortBooks("title")}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
+          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 w-max"
         >
           Sort Alphabetically ({sortOrder.title === "asc" ? "A-Z" : "Z-A"})
         </button>
@@ -96,6 +122,7 @@ export default function Home() {
         {/* Search box */}
         <div className="">
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search by title or author"
             value={searchQuery}
@@ -106,17 +133,25 @@ export default function Home() {
       </div>
 
       {/* Bookshelf */}
-      <ul className="flex border-b-[12px] border-orange-900 mt-10 items-baseline w-full">
-        {filteredBooks.map((book, index) => (
-          <Book
-            key={index}
-            data={book}
-            isSelected={selectedBook === book}
-            onSelect={handleSelectBook}
-            isAnyHovered={hoveredBook !== null}
-            onHover={setHoveredBook}
-          />
-        ))}
+      <ul
+        className="flex relative border-b-[12px] border-orange-900 mt-10 w-full min-w-[600px] overflow-x-auto  min-h-[667px] items-baseline"
+        ref={containerRef}
+      >
+        <AnimatePresence>
+          {filteredBooks.map((book, index) => (
+            <Book
+              key={book.id}
+              data={book}
+              isSelected={selectedBook === book}
+              onSelect={handleSelectBook}
+              isAnyHovered={hoveredBook !== null}
+              onHover={setHoveredBook}
+              style={{
+                transform: `translateX(${index * 100}px)`,
+              }}
+            />
+          ))}
+        </AnimatePresence>
       </ul>
     </section>
   );
