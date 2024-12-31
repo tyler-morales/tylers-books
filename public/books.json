@@ -86,5 +86,61 @@
     "year": 1949,
     "route": "1984.png",
     "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "012",
+    "title": "Einstein",
+    "author": "Walter Isaacson",
+    "year": 2007,
+    "route": "einstein.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "013",
+    "title": "John Adams",
+    "author": "Walter Isaacson",
+    "year": 2001,
+    "route": "john-adams.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "014",
+    "title": "Leonardo da Vinci",
+    "author": "Walter Isaacson",
+    "year": 2017,
+    "route": "davinci.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "015",
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "year": 1851,
+    "route": "moby-dick.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "016",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960,
+    "route": "to-kill-a-mockingbird.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "017",
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "year": 1945,
+    "route": "animal-farm.png",
+    "dateFinished": "2019-01-03"
+  },
+  {
+    "id": "018",
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "year": 1954,
+    "route": "lord-of-the-flies.png",
+    "dateFinished": "2019-01-03"
   }
 ]
