@@ -63,9 +63,13 @@ export default function Book({ data, isSelected, onSelect, isAnyHovered, onHover
     >
       <button onClick={() => onSelect(data)}>
         <Image
-          src={`/images/${route}`}
           alt={`Book spine of ${title}`}
           width={imageSize.width}
+          src={
+            process.env.NODE_ENV === "production"
+              ? `${process.env.NEXT_PUBLIC_BASE_PATH}/images/${route}`
+              : `/images/${route}`
+          }
           height={imageSize.height}
           onLoad={handleImageLoad}
           unoptimized={true}
