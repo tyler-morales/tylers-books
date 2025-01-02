@@ -1,11 +1,7 @@
 const nextConfig = {
-  output: "export",
-  basePath: "/tylers-books", // Set the base path to match the subdirectory on your server
-  publicRuntimeConfig: {
-    basePath: "/tylers-books",
-  },
-  // Optional settings
-  trailingSlash: true, // Ensure all paths end with a slash
+  output: "export", // Enables static exports
+  basePath: process.env.NODE_ENV === "production" ? "/tylers-books" : "", // Use basePath only in production
+  trailingSlash: true, // Ensures paths end with a slash (useful for static hosting)
 };
 
 module.exports = nextConfig;
