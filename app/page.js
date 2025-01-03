@@ -16,6 +16,8 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchBooks() {
+      console.log("Base Path:", process.env.NEXT_PUBLIC_BASE_PATH || "");
+      console.log("API Base Path:", process.env.NEXT_PUBLIC_API_BASE_PATH);
       try {
         const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
         const response = await fetch(`${apiBasePath}/books.json`);
@@ -187,7 +189,8 @@ export default function Home() {
           className="h-[20px]"
           style={{
             width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
-            backgroundImage: `url('/images/wood-texture.png')`,
+            // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
+            backgroundImage: `url(/images/wood-texture.png)`, // local env
           }}
         />
       </section>

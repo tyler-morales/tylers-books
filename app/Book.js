@@ -91,11 +91,8 @@ export default function Book({
           alt={`Book spine of ${title}`}
           width={imageSize?.width}
           height={imageSize?.height}
-          src={
-            process.env.NODE_ENV === "production"
-              ? `${process.env.NEXT_PUBLIC_BASE_PATH}/images/${route}`
-              : `/images/${route}`
-          }
+          // src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/${route}`} // production env
+          src={`/images/${route}`} // local env
           onLoad={handleImageLoad}
           unoptimized={true}
           onMouseEnter={handleMouseEnter}
