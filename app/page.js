@@ -184,7 +184,7 @@ export default function Home() {
         </ul>
         {/* Wood texture */}
         <div
-          className="absolute bottom-0 left-0 h-[20px]"
+          className="h-[20px]"
           style={{
             width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
             backgroundImage: `url('/images/wood-texture.png')`,
