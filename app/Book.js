@@ -1,18 +1,43 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { motion } from "framer-motion";
 
-export default function Book({ data, isSelected, onSelect, isAnyHovered, onHover }) {
-  const { title, author, route, year } = data; // Assuming review is part of the data
+export default function Book({
+  data,
+  isSelected,
+  onSelect,
+  isAnyHovered,
+  onHover,
+  bookSizeMultiplier,
+}) {
+  const { title, author, route, year } = data;
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const [animationParent] = useAutoAnimate();
+  const originalSize = useRef({ width: 0, height: 0 }); // Store original size
+
+  useEffect(() => {
+    const calculateImageSize = (naturalWidth, naturalHeight) => ({
+      width: naturalWidth / bookSizeMultiplier,
+      height: naturalHeight / bookSizeMultiplier,
+    });
+    if (originalSize.current.width && originalSize.current.height) {
+      setImageSize(calculateImageSize(originalSize.current.width, originalSize.current.height));
+    }
+  }, [bookSizeMultiplier]); // Update when multiplier changes
+
+  const calculateImageSize = (naturalWidth, naturalHeight) => ({
+    width: naturalWidth / bookSizeMultiplier,
+    height: naturalHeight / bookSizeMultiplier,
+  });
+
   const handleImageLoad = ({ target }) => {
-    setImageSize({ width: target.naturalWidth / 4, height: target.naturalHeight / 4 });
+    const naturalWidth = target.naturalWidth;
+    const naturalHeight = target.naturalHeight;
+    originalSize.current = { width: naturalWidth, height: naturalHeight }; // Store original size
+    setImageSize(calculateImageSize(naturalWidth, naturalHeight)); // Set initial size
   };
 
   const handleMouseEnter = () => {
@@ -26,7 +51,7 @@ export default function Book({ data, isSelected, onSelect, isAnyHovered, onHover
   };
 
   function getImageClassName(isHovered, isSelected, isAnyHovered) {
-    let className = "transition-all duration-800";
+    let className = "transition-opacity duration-800";
 
     //  When a book is hovered, it should have opacity 100%. All other books should have opacity 40%
     if (isHovered) {
@@ -64,13 +89,13 @@ export default function Book({ data, isSelected, onSelect, isAnyHovered, onHover
       <button onClick={() => onSelect(data)}>
         <Image
           alt={`Book spine of ${title}`}
-          width={imageSize.width}
+          width={imageSize?.width}
+          height={imageSize?.height}
           src={
             process.env.NODE_ENV === "production"
               ? `${process.env.NEXT_PUBLIC_BASE_PATH}/images/${route}`
               : `/images/${route}`
           }
-          height={imageSize.height}
           onLoad={handleImageLoad}
           unoptimized={true}
           onMouseEnter={handleMouseEnter}
@@ -79,7 +104,7 @@ export default function Book({ data, isSelected, onSelect, isAnyHovered, onHover
         />
       </button>
       {isSelected && (
-        <div className="pr-2">
+        <div className="pr-2 max-w-56">
           <h3 className="text-2xl font-bold">{title}</h3>
           <span>by {author}</span>
           <span className="block">{year}</span>

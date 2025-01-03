@@ -2,7 +2,6 @@
 
 import Book from "./Book";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -13,6 +12,7 @@ export default function Home() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [bookSizeMultiplier, setbookSizeMultiplier] = useState(4);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -95,12 +95,21 @@ export default function Home() {
       book.author.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return (
-    <section className="overflow-y-hidden h-[100vh] w-[100vw] overflow-hidden">
-      <h1 className="text-center">My Bookshelf</h1>
+  const handleReset = () => {
+    setbookSizeMultiplier(4); // Reset to default
+  };
 
-      {/* buttons */}
-      <div className="flex gap-2">
+  // Drop down menu
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // const toggleDropdown = () => {
+  //   setDropdownOpen(!dropdownOpen);
+  // };
+
+  return (
+    <>
+      <h1 className="text-center">Tyler&apos;s Bookshelf</h1>
+      <nav className="flex gap-2 flex-wrap px-2">
         <button
           onClick={() => sortBooks("title")}
           className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 w-max"
@@ -119,25 +128,44 @@ export default function Home() {
         >
           🔀
         </button>
-        {/* Search box */}
-        <div className="">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search by title or author"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 py-1 w-72"
+        />
+        {/* Slider */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="bookSizeSlider" className="mr-2">
+            Book Size:
+          </label>
           <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search by title or author"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 py-1 w-72"
+            id="bookSizeSlider"
+            type="range"
+            min="4"
+            max="6"
+            step="0.1"
+            value={bookSizeMultiplier}
+            onChange={(e) => setbookSizeMultiplier(parseFloat(e.target.value))}
+            className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
           />
+          <span className="ml-2">{bookSizeMultiplier.toFixed(1)}</span>
+          <button
+            onClick={handleReset}
+            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700"
+          >
+            Reset
+          </button>
         </div>
-      </div>
-
+      </nav>
       {/* Bookshelf */}
-      <ul
-        className="flex relative border-b-[12px] border-orange-900 mt-10 w-full min-w-[600px] overflow-x-auto  min-h-[667px] items-baseline"
-        ref={containerRef}
-      >
-        <AnimatePresence>
+      <section className="overflow-y-hidden absolute bottom-0 w-full">
+        <ul
+          className="flex relative mt-10 overflow-x-scroll w-max items-baseline min-w-[100vw] px-4"
+          ref={containerRef}
+        >
           {filteredBooks.map((book, index) => (
             <Book
               key={book.id}
@@ -146,13 +174,22 @@ export default function Home() {
               onSelect={handleSelectBook}
               isAnyHovered={hoveredBook !== null}
               onHover={setHoveredBook}
+              bookSizeMultiplier={bookSizeMultiplier}
               style={{
                 transform: `translateX(${index * 100}px)`,
               }}
             />
           ))}
-        </AnimatePresence>
-      </ul>
-    </section>
+        </ul>
+        {/* Wood texture */}
+        <div
+          className="absolute bottom-0 left-0 h-[20px]"
+          style={{
+            width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
+            backgroundImage: `url('/images/wood-texture.png')`,
+          }}
+        />
+      </section>
+    </>
   );
 }
