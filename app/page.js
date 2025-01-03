@@ -17,7 +17,8 @@ export default function Home() {
   useEffect(() => {
     async function fetchBooks() {
       try {
-        const response = await fetch("/books.json");
+        const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+        const response = await fetch(`${apiBasePath}/books.json`);
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.statusText}`);
         }
