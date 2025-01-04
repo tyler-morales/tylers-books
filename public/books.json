@@ -5,7 +5,9 @@
     "author": "J.D. Salinger",
     "route": "catcher-in-the-rye.png",
     "year": 1951,
-    "dateFinished": "2024-01-04"
+    "dateFinished": "2024-01-04",
+    "genre": "Classic Fiction",
+    "deweyDecimal": "813.54" // American fiction, 20th century
   },
   {
     "id": "002",
@@ -13,134 +15,168 @@
     "author": "Walter Isaacson",
     "route": "steve-jobs.png",
     "year": 2011,
-    "dateFinished": "2023-01-02"
+    "dateFinished": "2023-01-02",
+    "genre": "Biography",
+    "deweyDecimal": "921" // Biography section
   },
   {
     "id": "003",
-    "title": "The Sun also Rises",
+    "title": "The Sun Also Rises",
     "author": "Ernest Hemingway",
-    "year": 1926,
     "route": "the-sun-also-rises.png",
-    "dateFinished": "2019-01-03"
+    "year": 1926,
+    "dateFinished": "2019-01-03",
+    "genre": "Classic Fiction",
+    "deweyDecimal": "813.52" // American fiction, 20th century
   },
   {
     "id": "004",
-    "title": "Why we run",
+    "title": "Why We Run",
     "author": "Bernd Heinrich",
-    "year": 2011,
     "route": "why-we-run.png",
-    "dateFinished": "2019-01-03"
+    "year": 2011,
+    "dateFinished": "2019-01-03",
+    "genre": "Non-Fiction",
+    "deweyDecimal": "796.42" // Running and endurance sports
   },
   {
     "id": "005",
     "title": "Guns, Germs, and Steel",
     "author": "Jared Diamond",
-    "year": 1997,
     "route": "guns-germs-and-steel.png",
-    "dateFinished": "2019-01-03"
+    "year": 1997,
+    "dateFinished": "2019-01-03",
+    "genre": "History",
+    "deweyDecimal": "303.4" // Social and historical evolution
   },
   {
     "id": "006",
     "title": "Brave New World",
     "author": "Aldous Huxley",
-    "year": 1932,
     "route": "brave-new-world.png",
-    "dateFinished": "2019-01-03"
+    "year": 1932,
+    "dateFinished": "2019-01-03",
+    "genre": "Dystopian Fiction",
+    "deweyDecimal": "823.912" // English literature, 20th century
   },
   {
     "id": "007",
     "title": "Where Good Ideas Come From",
     "author": "Steven Johnson",
-    "year": 2010,
     "route": "where-good-ideas-come-from.png",
-    "dateFinished": "2019-01-03"
+    "year": 2010,
+    "dateFinished": "2019-01-03",
+    "genre": "Non-Fiction",
+    "deweyDecimal": "303.48" // Innovation and collaboration
   },
   {
     "id": "008",
     "title": "The 48 Laws of Power",
     "author": "Robert Greene",
-    "year": 1998,
     "route": "power.png",
-    "dateFinished": "2019-01-03"
+    "year": 1998,
+    "dateFinished": "2019-01-03",
+    "genre": "Self-Help",
+    "deweyDecimal": "303.3" // Influence and leadership
   },
   {
     "id": "009",
     "title": "A Short History of Nearly Everything",
     "author": "Bill Bryson",
-    "year": 2003,
     "route": "a-short-history-of-nearly-everything.png",
-    "dateFinished": "2019-01-03"
+    "year": 2003,
+    "dateFinished": "2019-01-03",
+    "genre": "Popular Science",
+    "deweyDecimal": "500" // General science
   },
   {
     "id": "010",
     "title": "Black Holes",
-    "author": "Jean-Pierre Luminet ",
-    "year": 1992,
+    "author": "Jean-Pierre Luminet",
     "route": "black-holes.png",
-    "dateFinished": "2019-01-03"
+    "year": 1992,
+    "dateFinished": "2019-01-03",
+    "genre": "Science",
+    "deweyDecimal": "523.1" // Astrophysics and black holes
   },
   {
     "id": "011",
     "title": "1984",
     "author": "George Orwell",
-    "year": 1949,
     "route": "1984.png",
-    "dateFinished": "2019-01-03"
+    "year": 1949,
+    "dateFinished": "2019-01-03",
+    "genre": "Dystopian Fiction",
+    "deweyDecimal": "823.912" // English literature, 20th century
   },
   {
     "id": "012",
     "title": "Einstein",
     "author": "Walter Isaacson",
-    "year": 2007,
     "route": "einstein.png",
-    "dateFinished": "2019-01-03"
+    "year": 2007,
+    "dateFinished": "2019-01-03",
+    "genre": "Biography",
+    "deweyDecimal": "530.092" // Physics biography
   },
   {
     "id": "013",
     "title": "John Adams",
     "author": "David McCullough",
-    "year": 2001,
     "route": "john-adams.png",
-    "dateFinished": "2019-01-03"
+    "year": 2001,
+    "dateFinished": "2019-01-03",
+    "genre": "Biography",
+    "deweyDecimal": "973.44092" // U.S. history, biography
   },
   {
     "id": "014",
     "title": "Leonardo da Vinci",
     "author": "Walter Isaacson",
-    "year": 2017,
     "route": "davinci.png",
-    "dateFinished": "2019-01-03"
+    "year": 2017,
+    "dateFinished": "2019-01-03",
+    "genre": "Biography",
+    "deweyDecimal": "709.2" // Art biography
   },
   {
     "id": "015",
     "title": "Moby Dick",
     "author": "Herman Melville",
-    "year": 1851,
     "route": "moby-dick.png",
-    "dateFinished": "2019-01-03"
+    "year": 1851,
+    "dateFinished": "2019-01-03",
+    "genre": "Classic Fiction",
+    "deweyDecimal": "813.3" // American literature, 19th century
   },
   {
     "id": "016",
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
-    "year": 1960,
     "route": "to-kill-a-mockingbird.png",
-    "dateFinished": "2019-01-03"
+    "year": 1960,
+    "dateFinished": "2019-01-03",
+    "genre": "Classic Fiction",
+    "deweyDecimal": "813.54" // American literature, 20th century
   },
   {
     "id": "017",
     "title": "Animal Farm",
     "author": "George Orwell",
-    "year": 1945,
     "route": "animal-farm.png",
-    "dateFinished": "2019-01-03"
+    "year": 1945,
+    "dateFinished": "2019-01-03",
+    "genre": "Political Satire",
+    "deweyDecimal": "823.912" // English literature, 20th century
   },
   {
     "id": "018",
     "title": "Lord of the Flies",
     "author": "William Golding",
-    "year": 1954,
     "route": "lord-of-the-flies.png",
-    "dateFinished": "2019-01-03"
+    "year": 1954,
+    "dateFinished": "2019-01-03",
+    "genre": "Classic Fiction",
+    "deweyDecimal": "823.914" // English literature, 20th century
   }
 ]
