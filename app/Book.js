@@ -13,7 +13,7 @@ export default function Book({
   onHover,
   bookSizeMultiplier,
 }) {
-  const { title, author, route, year } = data;
+  const { title, author, route, year, genre } = data;
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const originalSize = useRef({ width: 0, height: 0 }); // Store original size
@@ -79,10 +79,10 @@ export default function Book({
 
   return (
     <motion.li
-      initial={{ x: -50, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 50, opacity: 0 }}
-      transition={{ duration: 0.4 }}
+      initial={{ y: -500 }}
+      animate={{ y: 0 }}
+      exit={{ y: 0 }}
+      // transition={{ duration: 4.4 }}
       layout
       className="relative flex gap-2 items-end"
     >
@@ -99,15 +99,18 @@ export default function Book({
           onMouseLeave={handleMouseLeave}
           className={getImageClassName(isHovered, isSelected, isAnyHovered)}
         />
+        {/* Create a span that shows the genre when a book is hovered */}
+        {/* {isHovered && <span className="  bg-black text-white p-1 rounded">{genre}</span>} */}
       </button>
       {isSelected && (
         <div className="pr-2 max-w-56">
+          <span className="uppercase text-xs">{genre}</span>
           <h3 className="text-2xl font-bold">{title}</h3>
           <span>by {author}</span>
           <span className="block">{year}</span>
         </div>
       )}
-      {isHovered && (
+      {isHovered && !isSelected && (
         <div
           className="absolute top-0 left-0 bg-white p-2 text-black z-10 rounded-md shadow-md ml-2 mt-2 min-w-max"
           onMouseEnter={handleMouseEnter}
