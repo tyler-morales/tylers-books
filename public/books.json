@@ -7,7 +7,7 @@
     "year": 1951,
     "dateFinished": "2024-01-04",
     "genre": "Classic Fiction",
-    "deweyDecimal": "813.54" // American fiction, 20th century
+    "deweyDecimal": "813.54"
   },
   {
     "id": "002",
@@ -17,7 +17,7 @@
     "year": 2011,
     "dateFinished": "2023-01-02",
     "genre": "Biography",
-    "deweyDecimal": "921" // Biography section
+    "deweyDecimal": "921"
   },
   {
     "id": "003",
@@ -27,7 +27,7 @@
     "year": 1926,
     "dateFinished": "2019-01-03",
     "genre": "Classic Fiction",
-    "deweyDecimal": "813.52" // American fiction, 20th century
+    "deweyDecimal": "813.52"
   },
   {
     "id": "004",
@@ -37,7 +37,7 @@
     "year": 2011,
     "dateFinished": "2019-01-03",
     "genre": "Non-Fiction",
-    "deweyDecimal": "796.42" // Running and endurance sports
+    "deweyDecimal": "796.42"
   },
   {
     "id": "005",
@@ -47,7 +47,7 @@
     "year": 1997,
     "dateFinished": "2019-01-03",
     "genre": "History",
-    "deweyDecimal": "303.4" // Social and historical evolution
+    "deweyDecimal": "303.4"
   },
   {
     "id": "006",
@@ -57,7 +57,7 @@
     "year": 1932,
     "dateFinished": "2019-01-03",
     "genre": "Dystopian Fiction",
-    "deweyDecimal": "823.912" // English literature, 20th century
+    "deweyDecimal": "823.912"
   },
   {
     "id": "007",
@@ -67,7 +67,7 @@
     "year": 2010,
     "dateFinished": "2019-01-03",
     "genre": "Non-Fiction",
-    "deweyDecimal": "303.48" // Innovation and collaboration
+    "deweyDecimal": "303.48"
   },
   {
     "id": "008",
@@ -77,7 +77,7 @@
     "year": 1998,
     "dateFinished": "2019-01-03",
     "genre": "Self-Help",
-    "deweyDecimal": "303.3" // Influence and leadership
+    "deweyDecimal": "303.3"
   },
   {
     "id": "009",
@@ -87,7 +87,7 @@
     "year": 2003,
     "dateFinished": "2019-01-03",
     "genre": "Popular Science",
-    "deweyDecimal": "500" // General science
+    "deweyDecimal": "500"
   },
   {
     "id": "010",
@@ -97,7 +97,7 @@
     "year": 1992,
     "dateFinished": "2019-01-03",
     "genre": "Science",
-    "deweyDecimal": "523.1" // Astrophysics and black holes
+    "deweyDecimal": "523.1"
   },
   {
     "id": "011",
@@ -107,7 +107,7 @@
     "year": 1949,
     "dateFinished": "2019-01-03",
     "genre": "Dystopian Fiction",
-    "deweyDecimal": "823.912" // English literature, 20th century
+    "deweyDecimal": "823.912"
   },
   {
     "id": "012",
@@ -117,7 +117,7 @@
     "year": 2007,
     "dateFinished": "2019-01-03",
     "genre": "Biography",
-    "deweyDecimal": "530.092" // Physics biography
+    "deweyDecimal": "530.092"
   },
   {
     "id": "013",
@@ -127,7 +127,7 @@
     "year": 2001,
     "dateFinished": "2019-01-03",
     "genre": "Biography",
-    "deweyDecimal": "973.44092" // U.S. history, biography
+    "deweyDecimal": "973.44092"
   },
   {
     "id": "014",
@@ -137,7 +137,7 @@
     "year": 2017,
     "dateFinished": "2019-01-03",
     "genre": "Biography",
-    "deweyDecimal": "709.2" // Art biography
+    "deweyDecimal": "709.2"
   },
   {
     "id": "015",
@@ -147,7 +147,7 @@
     "year": 1851,
     "dateFinished": "2019-01-03",
     "genre": "Classic Fiction",
-    "deweyDecimal": "813.3" // American literature, 19th century
+    "deweyDecimal": "813.3"
   },
   {
     "id": "016",
@@ -157,7 +157,7 @@
     "year": 1960,
     "dateFinished": "2019-01-03",
     "genre": "Classic Fiction",
-    "deweyDecimal": "813.54" // American literature, 20th century
+    "deweyDecimal": "813.54"
   },
   {
     "id": "017",
@@ -167,7 +167,7 @@
     "year": 1945,
     "dateFinished": "2019-01-03",
     "genre": "Political Satire",
-    "deweyDecimal": "823.912" // English literature, 20th century
+    "deweyDecimal": "823.912"
   },
   {
     "id": "018",
@@ -177,6 +177,6 @@
     "year": 1954,
     "dateFinished": "2019-01-03",
     "genre": "Classic Fiction",
-    "deweyDecimal": "823.914" // English literature, 20th century
+    "deweyDecimal": "823.914"
   }
 ]

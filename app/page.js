@@ -2,6 +2,8 @@
 
 import Book from "./Book";
 import { useEffect, useState, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
+import About from "./examples/components/about";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -12,11 +14,12 @@ export default function Home() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookSizeMultiplier, setbookSizeMultiplier] = useState(4);
+  const [bookSizeMultiplier, setbookSizeMultiplier] = useState(4.1);
+  const [isShifted, setIsShifted] = useState(false);
 
   useEffect(() => {
     async function fetchBooks() {
-      console.log("Base Path:", process.env.NEXT_PUBLIC_BASE_PATH || "");
+      console.log("Base Path:", process.env.NEXT_PUBLIC_BASE_PATH || "/");
       console.log("API Base Path:", process.env.NEXT_PUBLIC_API_BASE_PATH);
       try {
         const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
@@ -45,11 +48,17 @@ export default function Home() {
           return order === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
         case "year":
           return order === "asc" ? a.year - b.year : b.year - a.year;
+        case "dewey":
+          return order === "asc"
+            ? a.deweyDecimal - b.deweyDecimal
+            : b.deweyDecimal - a.deweyDecimal;
         // Add other sorting methods here
         default:
           return 0;
       }
     });
+    console.log(sortedBooks.map((book) => book.deweyDecimal));
+
     setBooks(sortedBooks);
     setSortOrder({ ...sortOrder, [criteria]: order });
   };
@@ -99,7 +108,12 @@ export default function Home() {
   );
 
   const handleReset = () => {
-    setbookSizeMultiplier(4); // Reset to default
+    setbookSizeMultiplier(4.1); // Reset to default
+  };
+
+  const handleShiftEnter = () => {
+    console.log("Shift bookshelf");
+    setIsShifted(!isShifted);
   };
 
   // Drop down menu
@@ -112,6 +126,7 @@ export default function Home() {
   return (
     <>
       <h1 className="text-center">Tyler&apos;s Bookshelf</h1>
+
       <nav className="flex gap-2 flex-wrap px-2">
         <button
           onClick={() => sortBooks("title")}
@@ -124,6 +139,12 @@ export default function Home() {
           className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
         >
           Sort by Year ({sortOrder.year === "asc" ? "Oldest First" : "Newest First"})
+        </button>
+        <button
+          onClick={() => sortBooks("dewey")}
+          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
+        >
+          Sort by Dewey Decimal ({sortOrder.dewey === "asc" ? "Low-High" : "High-Low"})
         </button>
         <button
           onClick={handleShuffleBooks}
@@ -147,7 +168,7 @@ export default function Home() {
           <input
             id="bookSizeSlider"
             type="range"
-            min="4"
+            min="4.1"
             max="6"
             step="0.1"
             value={bookSizeMultiplier}
@@ -163,8 +184,15 @@ export default function Home() {
           </button>
         </div>
       </nav>
+
       {/* Bookshelf */}
-      <section className="overflow-y-hidden absolute bottom-0 w-full">
+      <section
+        className={`overflow-y-hidden absolute bottom-0 w-full transition-all duration-700 ease-in-out ${
+          isShifted ? "" : ""
+          // isShifted ? "-translate-y-40" : ""
+        }`}
+      >
+        {/* Shelf */}
         <ul
           className="flex relative mt-10 overflow-x-scroll w-max items-baseline min-w-[100vw] px-4"
           ref={containerRef}
@@ -178,9 +206,9 @@ export default function Home() {
               isAnyHovered={hoveredBook !== null}
               onHover={setHoveredBook}
               bookSizeMultiplier={bookSizeMultiplier}
-              style={{
-                transform: `translateX(${index * 100}px)`,
-              }}
+              // style={{
+              //   transform: `translateX(${index * 100}px)`,
+              // }}
             />
           ))}
         </ul>
@@ -192,7 +220,11 @@ export default function Home() {
             // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
             backgroundImage: `url(/images/wood-texture.png)`, // local env
           }}
+          onMouseEnter={handleShiftEnter}
         />
+
+        {/* Footer */}
+        <About isShifted={isShifted} />
       </section>
     </>
   );
