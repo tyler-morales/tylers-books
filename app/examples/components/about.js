@@ -4,16 +4,16 @@ const About = ({ isShifted }) => {
   return (
     <div className={`text-center w-full p-4 h-min max-w-3xl m-auto ${isShifted ? "" : "hidden"}`}>
       <div>
-        <hr class="h-[2px] bg-white border-0 mb-2 mt-4" />
-        <hr class="h-[4px] bg-white border-0 mb-2" />
+        <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
+        <hr className="h-[4px] bg-white border-0 mb-2" />
 
         <h3 className="text-2xl uppercase font-serif font-black">Tyler&apos;s Books</h3>
         <h4 className="uppercase font-black text-sm text-center font-serif">
           A collection of books I own on my bookshelf
         </h4>
 
-        <hr class="h-[4px] bg-white border-0 mb-2 mt-2" />
-        <hr class="h-[2px] bg-white border-0 mb-4" />
+        <hr className="h-[4px] bg-white border-0 mb-2 mt-2" />
+        <hr className="h-[2px] bg-white border-0 mb-4" />
 
         <p className="mb-2">
           The idea for this projet came from following one of my favorite design accounts on

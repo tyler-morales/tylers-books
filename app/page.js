@@ -57,7 +57,6 @@ export default function Home() {
           return 0;
       }
     });
-    console.log(sortedBooks.map((book) => book.deweyDecimal));
 
     setBooks(sortedBooks);
     setSortOrder({ ...sortOrder, [criteria]: order });
@@ -112,7 +111,6 @@ export default function Home() {
   };
 
   const handleShiftEnter = () => {
-    console.log("Shift bookshelf");
     setIsShifted(!isShifted);
   };
 
