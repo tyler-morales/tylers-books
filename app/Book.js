@@ -13,7 +13,8 @@ export default function Book({
   onHover,
   bookSizeMultiplier,
 }) {
-  const { title, author, route, year, genre } = data;
+  const { title, author, route, year, genre, deweyDecimal } = data;
+
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const originalSize = useRef({ width: 0, height: 0 }); // Store original size
@@ -108,6 +109,7 @@ export default function Book({
           <h3 className="text-2xl font-bold">{title}</h3>
           <span>by {author}</span>
           <span className="block">{year}</span>
+          <span>{deweyDecimal}</span>
         </div>
       )}
       {isHovered && !isSelected && (
