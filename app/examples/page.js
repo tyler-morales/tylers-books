@@ -1,18 +1,39 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 
 const ExamplesPage = () => {
-  return (
-    <section className="h-screen overflow-hidden">
-      {/* <!-- Static (non-scrollable) section --> */}
-      <div className="h-[90vh] bg-red-600 w-full"></div>
+  const [isScrollable, setIsScrollable] = useState(null);
 
-      {/* <!-- Scrollable section 1 --> */}
-      <div className="h-[10vh] bg-green-600 overflow-y-scroll">
-        <p>This section can scroll.</p>
+  const handleScroll = (scrollability) => {
+    // A section is deemed scrollable,
+    if (scrollability) {
+      setIsScrollable(true);
+    }
+
+    if (scrollability == false) {
+      setIsScrollable(false);
+    }
+  };
+
+  return (
+    <>
+      {/* Non-scrollable section BOOKSHELF */}
+      <div onMouseOver={() => handleScroll(true)} className="h-[90vh] bg-red-600">
+        <p>This does NOT scroll.</p>
       </div>
 
-      {/* <!-- Scrollable section 2 --> */}
-      <div className="h-[30vh] overflow-y-scroll bg-gray-200 p-4">
+      {/* Scrollable section 1 SHELF BOTTOM */}
+      <div onMouseOver={() => handleScroll(false)} className="h-md bg-green-600 overflow-y-scroll">
+        <p>This section can scroll.</p>
+        <p>Additional content to demonstrate scrolling...</p>
+      </div>
+
+      {/* Scrollable section 2 ABOUT SECTION */}
+      <div
+        className={`h-sm overflow-y-scroll bg-blue-500 transition-all ${
+          isScrollable ? "hidden" : "visible"
+        } `}
+      >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet aliquet finibus.
           Praesent laoreet aliquam massa viverra consectetur. Vivamus pellentesque placerat ligula,
@@ -23,7 +44,7 @@ const ExamplesPage = () => {
           maximus tincidunt. Donec ipsum arcu, congue ac augue non, laoreet dignissim felis.
         </p>
       </div>
-    </section>
+    </>
   );
 };
 

@@ -15,7 +15,8 @@ export default function Home() {
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [bookSizeMultiplier, setbookSizeMultiplier] = useState(4.1);
-  const [isShifted, setIsShifted] = useState(false);
+
+  const [isScrollable, setIsScrollable] = useState(null);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -110,9 +111,9 @@ export default function Home() {
     setbookSizeMultiplier(4.1); // Reset to default
   };
 
-  const handleShiftEnter = () => {
-    setIsShifted(!isShifted);
-  };
+  // const handleShiftEnter = () => {
+  //   setIsShifted(!isShifted);
+  // };
 
   // Drop down menu
   // const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -120,6 +121,19 @@ export default function Home() {
   // const toggleDropdown = () => {
   //   setDropdownOpen(!dropdownOpen);
   // };
+
+  const handleScroll = (scrollability) => {
+    console.log("scroll");
+
+    // A section is deemed scrollable,
+    if (scrollability) {
+      setIsScrollable(true);
+    }
+
+    if (scrollability == false) {
+      setIsScrollable(false);
+    }
+  };
 
   return (
     <>
@@ -183,17 +197,12 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Bookshelf */}
-      <section
-        className={`overflow-y-hidden absolute bottom-0 w-full transition-all duration-700 ease-in-out ${
-          isShifted ? "" : ""
-          // isShifted ? "-translate-y-40" : ""
-        }`}
-      >
-        {/* Shelf */}
+      <section className="absolute bottom-0">
+        {/* Bookshelf */}
         <ul
-          className="flex relative mt-10 overflow-x-scroll w-max items-baseline min-w-[100vw] px-4"
+          className="flex relative mt-10 overflow-x-auto w-max items-baseline min-w-[100vw] px-4"
           ref={containerRef}
+          onMouseOver={() => handleScroll(true)}
         >
           {filteredBooks.map((book, index) => (
             <Book
@@ -204,25 +213,24 @@ export default function Home() {
               isAnyHovered={hoveredBook !== null}
               onHover={setHoveredBook}
               bookSizeMultiplier={bookSizeMultiplier}
-              // style={{
-              //   transform: `translateX(${index * 100}px)`,
-              // }}
             />
           ))}
         </ul>
+
         {/* Wood texture */}
         <div
-          className="h-[20px]"
+          className="h-[20px] overflow-y-scroll"
           style={{
             width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
             // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
             backgroundImage: `url(/images/wood-texture.png)`, // local env
           }}
-          onMouseEnter={handleShiftEnter}
+          onMouseOver={() => handleScroll(false)}
         />
 
-        {/* Footer */}
-        <About isShifted={isShifted} />
+        {/* <div className={`overflow-y-scroll transition-all ${isScrollable ? "hidden" : "visible"} `}> */}
+        <About isScrollable={isScrollable} />
+        {/* </div> */}
       </section>
     </>
   );

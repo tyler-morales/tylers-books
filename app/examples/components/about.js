@@ -1,8 +1,12 @@
 import React from "react";
 
-const About = ({ isShifted }) => {
+const About = ({ isScrollable }) => {
   return (
-    <div className={`text-center w-full p-4 h-min max-w-3xl m-auto ${isShifted ? "" : "hidden"}`}>
+    <div
+      className={`text-center max-w-3xl w-full p-4 overflow-y-scroll ${
+        isScrollable ? "hidden" : "visible"
+      }`}
+    >
       <div>
         <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
         <hr className="h-[4px] bg-white border-0 mb-2" />
