@@ -16,24 +16,22 @@ const ExamplesPage = () => {
   };
 
   return (
-    <>
+    <section
+      className={`w-full max-h-[550px] overflow-y-scroll overflow-x-hidden m-0 p-0 bottom-0 absolute`}
+    >
       {/* Non-scrollable section BOOKSHELF */}
-      <div onMouseOver={() => handleScroll(true)} className="h-[90vh] bg-red-600">
+      <div onMouseOver={() => handleScroll(true)} className="h-[500px] bg-red-600">
         <p>This does NOT scroll.</p>
       </div>
 
       {/* Scrollable section 1 SHELF BOTTOM */}
-      <div onMouseOver={() => handleScroll(false)} className="h-md bg-green-600 overflow-y-scroll">
+      <div onMouseOver={() => handleScroll(false)} className="h-[50px] bg-green-600">
         <p>This section can scroll.</p>
         <p>Additional content to demonstrate scrolling...</p>
       </div>
 
       {/* Scrollable section 2 ABOUT SECTION */}
-      <div
-        className={`h-sm overflow-y-scroll bg-blue-500 transition-all ${
-          isScrollable ? "hidden" : "visible"
-        } `}
-      >
+      <div className={`h-max  bg-blue-500 transition-all ${isScrollable ? "hidden" : "visible"} `}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet aliquet finibus.
           Praesent laoreet aliquam massa viverra consectetur. Vivamus pellentesque placerat ligula,
@@ -44,7 +42,7 @@ const ExamplesPage = () => {
           maximus tincidunt. Donec ipsum arcu, congue ac augue non, laoreet dignissim felis.
         </p>
       </div>
-    </>
+    </section>
   );
 };
 
