@@ -1,18 +1,17 @@
 import React from "react";
 
-const About = ({ isScrollable }) => {
+const About = ({ isScrollable, ref }) => {
   return (
-    <div
-      className={`text-center max-w-3xl w-full p-4 overflow-y-scroll ${
-        isScrollable ? "hidden" : "visible"
-      }`}
+    <section
+      ref={ref}
+      className={`max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}
     >
       <div>
         <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
         <hr className="h-[4px] bg-white border-0 mb-2" />
 
         <h3 className="text-2xl uppercase font-serif font-black">Tyler&apos;s Books</h3>
-        <h4 className="uppercase font-black text-sm text-center font-serif">
+        <h4 className="uppercase font-black text-sm  font-serif">
           A collection of books I own on my bookshelf
         </h4>
 
@@ -70,7 +69,7 @@ const About = ({ isScrollable }) => {
           </a>
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
