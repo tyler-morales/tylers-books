@@ -107,7 +107,7 @@ export default function Book({
         // Catalog Card
         <div className="flex flex-col relative">
           <div
-            className="rounded-l-md rounded-md z-50 shadow-xl w-[300px] h-[200px] mr-1 object-cover	"
+            className="rounded-l-md rounded-md z-50 shadow-xl w-[300px] h-[200px] mr-1 bg-cover	"
             style={{
               // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
               backgroundImage: `url(/images/catalog-card.png)`, // local env
