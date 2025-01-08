@@ -1,22 +1,48 @@
-import React from "react";
+import { useEffect } from "react";
 
 const Settings = ({
-  sortBooks,
+  setBooks,
+  setSortOrder,
+  books,
   sortOrder,
   handleShuffleBooks,
   inputRef,
   searchQuery,
   setSearchQuery,
-  // handleSearchChange,
   bookSizeMultiplier,
   setBookSizeMultiplier,
 }) => {
+  // Reset size of book to base
   const handleReset = () => {
     setBookSizeMultiplier(4.1); // Reset to default
   };
 
+  // Set search query equal to the user's input
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  // Sort books based on criteria
+  const sortBooks = (criteria) => {
+    const order = sortOrder[criteria] === "asc" ? "desc" : "asc";
+    const sortedBooks = [...books].sort((a, b) => {
+      switch (criteria) {
+        case "title":
+          return order === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+        case "year":
+          return order === "asc" ? a.year - b.year : b.year - a.year;
+        case "dewey":
+          return order === "asc"
+            ? a.deweyDecimal - b.deweyDecimal
+            : b.deweyDecimal - a.deweyDecimal;
+        // Add other sorting methods here
+        default:
+          return 0;
+      }
+    });
+
+    setBooks(sortedBooks);
+    setSortOrder({ ...sortOrder, [criteria]: order });
   };
 
   return (

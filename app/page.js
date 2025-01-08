@@ -43,28 +43,6 @@ export default function Home() {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const sortBooks = (criteria) => {
-    const order = sortOrder[criteria] === "asc" ? "desc" : "asc";
-    const sortedBooks = [...books].sort((a, b) => {
-      switch (criteria) {
-        case "title":
-          return order === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
-        case "year":
-          return order === "asc" ? a.year - b.year : b.year - a.year;
-        case "dewey":
-          return order === "asc"
-            ? a.deweyDecimal - b.deweyDecimal
-            : b.deweyDecimal - a.deweyDecimal;
-        // Add other sorting methods here
-        default:
-          return 0;
-      }
-    });
-
-    setBooks(sortedBooks);
-    setSortOrder({ ...sortOrder, [criteria]: order });
-  };
-
   const handleSelectBook = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
   };
@@ -120,11 +98,13 @@ export default function Home() {
     <>
       <Settings
         inputRef={inputRef}
-        sortBooks={sortBooks}
+        books={books}
+        setBooks={setBooks}
         sortOrder={sortOrder}
-        handleShuffleBooks={handleShuffleBooks}
+        setSortOrder={setSortOrder}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        handleShuffleBooks={handleShuffleBooks}
         bookSizeMultiplier={bookSizeMultiplier}
         setBookSizeMultiplier={setBookSizeMultiplier}
       />
