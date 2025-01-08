@@ -8,10 +8,10 @@ export default function Plaque({ target }) {
   return (
     <button
       onClick={scrollToDiv}
-      className="ml-4 relative w-[200px] justify-self-center h-max align-middle bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-orange-400 rounded-md shadow-sm"
+      className="ml-4 relative w-[250px] justify-self-center h-max align-middle bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-orange-400 rounded-md shadow-sm"
     >
       <h3 className="font-black px-2 text-center uppercase font-serif text-yellow-800 drop-shadow-[0_1px_0_rgba(255,255,255,0.8)] tracking-widest">
-        Tyler&apos;s Books
+        Tyler&apos;s Library
       </h3>
       {/* Screws */}
       <div>
