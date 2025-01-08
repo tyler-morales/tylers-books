@@ -2,8 +2,9 @@
 
 import Book from "./Book";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { motion } from "framer-motion";
-import About from "./examples/components/about";
+import About from "./components/about";
+import Plaque from "./components/Plaque";
+import Settings from "./components/Settings";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -15,7 +16,7 @@ export default function Home() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookSizeMultiplier, setbookSizeMultiplier] = useState(4.1);
+  const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4.1);
 
   const [isScrollable, setIsScrollable] = useState(null);
 
@@ -42,28 +43,6 @@ export default function Home() {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const sortBooks = (criteria) => {
-    const order = sortOrder[criteria] === "asc" ? "desc" : "asc";
-    const sortedBooks = [...books].sort((a, b) => {
-      switch (criteria) {
-        case "title":
-          return order === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
-        case "year":
-          return order === "asc" ? a.year - b.year : b.year - a.year;
-        case "dewey":
-          return order === "asc"
-            ? a.deweyDecimal - b.deweyDecimal
-            : b.deweyDecimal - a.deweyDecimal;
-        // Add other sorting methods here
-        default:
-          return 0;
-      }
-    });
-
-    setBooks(sortedBooks);
-    setSortOrder({ ...sortOrder, [criteria]: order });
-  };
-
   const handleSelectBook = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
   };
@@ -71,10 +50,6 @@ export default function Home() {
   const handleShuffleBooks = useCallback(() => {
     setBooks(shuffleArray([...books]));
   }, [books]);
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -108,10 +83,6 @@ export default function Home() {
       book.author.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleReset = () => {
-    setbookSizeMultiplier(4.1); // Reset to default
-  };
-
   const handleScroll = (scrollability) => {
     // A section is deemed scrollable,
     if (scrollability) {
@@ -123,69 +94,20 @@ export default function Home() {
     }
   };
 
-  const scrollToDiv = () => {
-    targetDivRef.current.scrollIntoView({ behavior: "smooth" }); // Smoothly scrolls to the div
-  };
-
   return (
     <>
-      <nav className="flex gap-2 flex-wrap px-2">
-        <button
-          onClick={() => sortBooks("title")}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 w-max"
-        >
-          Sort Alphabetically ({sortOrder.title === "asc" ? "A-Z" : "Z-A"})
-        </button>
-        <button
-          onClick={() => sortBooks("year")}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
-        >
-          Sort by Year ({sortOrder.year === "asc" ? "Oldest First" : "Newest First"})
-        </button>
-        <button
-          onClick={() => sortBooks("dewey")}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
-        >
-          Sort by Dewey Decimal ({sortOrder.dewey === "asc" ? "Low-High" : "High-Low"})
-        </button>
-        <button
-          onClick={handleShuffleBooks}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
-        >
-          🔀
-        </button>
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Search by title or author"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 py-1 w-72"
-        />
-        {/* Slider */}
-        <div className="flex items-center gap-2">
-          <label htmlFor="bookSizeSlider" className="mr-2">
-            Book Size:
-          </label>
-          <input
-            id="bookSizeSlider"
-            type="range"
-            min="4.1"
-            max="6"
-            step="0.1"
-            value={bookSizeMultiplier}
-            onChange={(e) => setbookSizeMultiplier(parseFloat(e.target.value))}
-            className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
-          />
-          <span className="ml-2">{bookSizeMultiplier.toFixed(1)}</span>
-          <button
-            onClick={handleReset}
-            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700"
-          >
-            Reset
-          </button>
-        </div>
-      </nav>
+      <Settings
+        inputRef={inputRef}
+        books={books}
+        setBooks={setBooks}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleShuffleBooks={handleShuffleBooks}
+        bookSizeMultiplier={bookSizeMultiplier}
+        setBookSizeMultiplier={setBookSizeMultiplier}
+      />
 
       <section className="w-full max-h-[740px] overflow-y-scroll m-0 p-0 bottom-0 absolute scroll-hidden">
         {/* Non-scrollable section BOOKSHELF */}
@@ -218,28 +140,7 @@ export default function Home() {
           onMouseOver={() => handleScroll(false)}
         >
           {/* Plaque */}
-          <button
-            onClick={scrollToDiv}
-            className="ml-4 relative w-[200px] justify-self-center h-max align-middle bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-orange-400 rounded-md shadow-sm"
-          >
-            <h3 className="font-black px-2 text-center uppercase font-serif text-yellow-800 drop-shadow-[0_1px_0_rgba(255,255,255,0.8)] tracking-widest">
-              Tyler&apos;s Books
-            </h3>
-            {/* Screws */}
-            <div>
-              {/* Top-Left Screw */}
-              <div className="absolute top-0 left-1 w-2 h-2 rounded-full bg-orange-700 border border-orange-900 shadow-[inset_0px_2px_3px_rgba(255,255,255,0.6)]"></div>
-
-              {/* Top-Right Screw */}
-              <div className="absolute top-0 right-1 w-2 h-2 rounded-full bg-orange-700 border border-orange-900 shadow-[inset_0px_2px_3px_rgba(255,255,255,0.6)]"></div>
-
-              {/* Bottom-Left Screw */}
-              <div className="absolute bottom-0 left-1 w-2 h-2 rounded-full bg-orange-700 border border-orange-900 shadow-[inset_0px_2px_3px_rgba(255,255,255,0.6)]"></div>
-
-              {/* Bottom-Right Screw */}
-              <div className="absolute bottom-0 right-1 w-2 h-2 rounded-full bg-orange-700 border border-orange-900 shadow-[inset_0px_2px_3px_rgba(255,255,255,0.6)]"></div>
-            </div>
-          </button>
+          <Plaque target={targetDivRef} />
         </div>
 
         {/* Scrollable section 2 ABOUT SECTION */}
