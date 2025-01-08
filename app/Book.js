@@ -85,9 +85,10 @@ export default function Book({
       exit={{ y: 0 }}
       // transition={{ duration: 4.4 }}
       layout
-      className="relative flex gap-2 items-end"
+      className="relative flex items-end gap-2"
     >
       <button onClick={() => onSelect(data)}>
+        {/* Book */}
         <Image
           alt={`Book spine of ${title}`}
           width={imageSize?.width}
@@ -99,17 +100,40 @@ export default function Book({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={getImageClassName(isHovered, isSelected, isAnyHovered)}
+          style={{ boxShadow: "5px 3px 5px black" }}
         />
-        {/* Create a span that shows the genre when a book is hovered */}
-        {/* {isHovered && <span className="  bg-black text-white p-1 rounded">{genre}</span>} */}
       </button>
       {isSelected && (
-        <div className="pr-2 max-w-56">
-          <span className="uppercase text-xs">{genre}</span>
-          <h3 className="text-2xl font-bold">{title}</h3>
-          <span>by {author}</span>
-          <span className="block">{year}</span>
-          <span>{deweyDecimal}</span>
+        // Catalog Card
+        <div className="flex flex-col relative">
+          <div
+            className="rounded-l-md rounded-md z-50 shadow-xl w-[300px] h-[200px] mr-1 object-cover	"
+            style={{
+              // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
+              backgroundImage: `url(/images/catalog-card.png)`, // local env
+              boxShadow: "5px 3px 5px black",
+            }}
+          >
+            <div className="text-black font-serif p-2 flex justify-between flex-col h-full">
+              <div>
+                <span className="text-sm text-right block mb-4">{genre}</span>
+                <span className="font-bold">{author}, </span>
+                <span className="">{title}</span>
+                <span className="block">{year}</span>
+              </div>
+
+              {/* Bottom notes */}
+              <div className="flex items-center justify-between mt-4 font-mono">
+                <div className="flex flex-col">
+                  {/* <span className="text-xs">Cataloged on</span> */}
+                  <span className="text-sm text-red-500 -rotate-2 uppercase font-bold">
+                    Jan 7 2025
+                  </span>
+                </div>
+                <span className="text-sm">{deweyDecimal}</span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
       {isHovered && !isSelected && (
