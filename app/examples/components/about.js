@@ -1,8 +1,11 @@
 import React from "react";
 
-const About = ({ isScrollable }) => {
+const About = ({ isScrollable, ref }) => {
   return (
-    <div className={`max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}>
+    <section
+      ref={ref}
+      className={`max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}
+    >
       <div>
         <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
         <hr className="h-[4px] bg-white border-0 mb-2" />
@@ -66,7 +69,7 @@ const About = ({ isScrollable }) => {
           </a>
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

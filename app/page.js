@@ -8,6 +8,7 @@ import About from "./examples/components/about";
 export default function Home() {
   const containerRef = useRef(null);
   const inputRef = useRef("");
+  const targetDivRef = useRef(null);
 
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState({ title: "asc", dateFinished: "asc", year: "asc" });
@@ -111,16 +112,7 @@ export default function Home() {
     setbookSizeMultiplier(4.1); // Reset to default
   };
 
-  // Drop down menu
-  // const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  // const toggleDropdown = () => {
-  //   setDropdownOpen(!dropdownOpen);
-  // };
-
   const handleScroll = (scrollability) => {
-    console.log("scroll");
-
     // A section is deemed scrollable,
     if (scrollability) {
       setIsScrollable(true);
@@ -129,6 +121,10 @@ export default function Home() {
     if (scrollability == false) {
       setIsScrollable(false);
     }
+  };
+
+  const scrollToDiv = () => {
+    targetDivRef.current.scrollIntoView({ behavior: "smooth" }); // Smoothly scrolls to the div
   };
 
   return (
@@ -222,7 +218,10 @@ export default function Home() {
           onMouseOver={() => handleScroll(false)}
         >
           {/* Plaque */}
-          <div className="ml-4 relative w-[200px] justify-self-center h-max align-middle bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-orange-400 rounded-md shadow-sm">
+          <button
+            onClick={scrollToDiv}
+            className="ml-4 relative w-[200px] justify-self-center h-max align-middle bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-orange-400 rounded-md shadow-sm"
+          >
             <h3 className="font-black px-2 text-center uppercase font-serif text-yellow-800 drop-shadow-[0_1px_0_rgba(255,255,255,0.8)] tracking-widest">
               Tyler&apos;s Books
             </h3>
@@ -240,11 +239,11 @@ export default function Home() {
               {/* Bottom-Right Screw */}
               <div className="absolute bottom-0 right-1 w-2 h-2 rounded-full bg-orange-700 border border-orange-900 shadow-[inset_0px_2px_3px_rgba(255,255,255,0.6)]"></div>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Scrollable section 2 ABOUT SECTION */}
-        <About isScrollable={isScrollable} />
+        <About ref={targetDivRef} isScrollable={isScrollable} />
       </section>
     </>
   );
