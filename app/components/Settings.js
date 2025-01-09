@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const Settings = ({
   setBooks,
@@ -47,18 +46,7 @@ const Settings = ({
   };
 
   return (
-    <motion.div
-      animate={{
-        x: 0,
-        opacity: 1,
-        transition: {
-          default: { type: "spring" },
-          opacity: { ease: "linear" },
-        },
-      }}
-      layout
-      className="flex flex-col sm:flex-row absolute sm:relative bottom-1 sm:bottom-0 sm:items-center gap-2 px-2 z-[99] w-max"
-    >
+    <div className="flex flex-col sm:flex-row absolute sm:relative bottom-1 sm:bottom-0 sm:items-center gap-2 px-2 z-[99] w-max">
       {isOpen && (
         <>
           <button
@@ -131,7 +119,7 @@ const Settings = ({
           Reset
         </button>
       </div> */}
-    </motion.div>
+    </div>
   );
 };
 

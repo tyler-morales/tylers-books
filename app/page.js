@@ -18,7 +18,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4.1);
 
-  const [isScrollable, setIsScrollable] = useState(null);
+  const [isScrollable, setIsScrollable] = useState(false);
 
   useEffect(() => {
     async function fetchBooks() {

@@ -81,7 +81,7 @@ export default function Book({
   return (
     <motion.li
       animate={{
-        x: 0,
+        y: 0,
         opacity: 1,
         transition: {
           default: { type: "spring" },

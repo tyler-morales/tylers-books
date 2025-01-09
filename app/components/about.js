@@ -4,7 +4,7 @@ const About = ({ isScrollable, ref }) => {
   return (
     <section
       ref={ref}
-      className={`max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}
+      className={`h-0 max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}
     >
       <div>
         <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
