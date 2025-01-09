@@ -106,7 +106,7 @@ export default function Home() {
           // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
           backgroundImage: "url(/images/wood.jpg)",
         }}
-        className="flex gap-4 flex-wrap px-2 h-[40px] items-center"
+        className="flex gap-2 flex-wrap px-2 items-center justify-center sm:justify-start sm:gap-4 sm:h-[40px] py-2 sm:p-0"
       >
         <Plaque target={containerRef} />
 
@@ -118,7 +118,7 @@ export default function Home() {
           placeholder="Search by title or author"
           value={searchQuery}
           onChange={handleSearchChange}
-          className="sunken border-b-2 border-green-400 focus:border-b-2 outline-blue-500 placeholder:text-orange-300 font-black text-white rounded-md px-2 py-1 w-72"
+          className="sunken w-full border-b-2 border-green-400 focus:border-b-2 outline-blue-500 placeholder:text-orange-300 font-black text-white rounded-md px-2 py-1 sm:w-72"
         />
       </nav>
       <section className="w-full max-h-[750px] overflow-y-scroll m-0 p-0 bottom-0 absolute scroll-hidden">
@@ -152,16 +152,16 @@ export default function Home() {
           onMouseOver={() => handleScroll(false)}
         >
           <Settings
-            inputRef={inputRef}
+            // inputRef={inputRef}
             books={books}
             setBooks={setBooks}
             sortOrder={sortOrder}
             setSortOrder={setSortOrder}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
             handleShuffleBooks={handleShuffleBooks}
-            bookSizeMultiplier={bookSizeMultiplier}
-            setBookSizeMultiplier={setBookSizeMultiplier}
+            // searchQuery={searchQuery}
+            // setSearchQuery={setSearchQuery}
+            // bookSizeMultiplier={bookSizeMultiplier}
+            // setBookSizeMultiplier={setBookSizeMultiplier}
           />
         </div>
 
