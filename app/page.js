@@ -17,7 +17,23 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isAboutVisible, setIsAboutVisible] = useState(false);
   // Create state that sets bookSizeMultiplier to 5 when on small screens and 4 to larger screens
-  const [bookSizeMultiplier, setBookSizeMultiplier] = useState(window.innerWidth < 640 ? 5 : 4);
+  const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4);
+
+  useEffect(() => {
+    // Update book size multiplier after mounting
+    const handleResize = () => {
+      setBookSizeMultiplier(window.innerWidth < 640 ? 5 : 4);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
