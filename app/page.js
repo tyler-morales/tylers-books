@@ -135,7 +135,7 @@ export default function Home() {
           style={{
             width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
             // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
-            backgroundImage: `url(/images/wood-texture.png)`, // local env
+            backgroundImage: `url(/images/wood.jpg)`, // local env
           }}
           onMouseOver={() => handleScroll(false)}
         >

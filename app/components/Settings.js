@@ -46,7 +46,13 @@ const Settings = ({
   };
 
   return (
-    <nav className="flex gap-2 flex-wrap px-2">
+    <nav
+      style={{
+        // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
+        backgroundImage: "url(/images/wood.jpg)",
+      }}
+      className="flex gap-2 flex-wrap px-2"
+    >
       <button
         onClick={() => sortBooks("title")}
         className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 w-max"
