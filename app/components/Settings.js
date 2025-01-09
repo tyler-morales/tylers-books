@@ -9,12 +9,8 @@ const Settings = ({
   onStateChange,
   sharedState,
 }) => {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const [isOpen, setIsOpen] = useState(false);
-
-  // Reset size of book to base
-  // const handleReset = () => {
-  //   setBookSizeMultiplier(4.1); // Reset to default
-  // };
 
   const handleModal = () => {
     onStateChange(!sharedState); // Send the new value to the parent
@@ -52,6 +48,9 @@ const Settings = ({
       {isOpen && (
         <div className="flex sm:flex-row flex-col gap-2 shadow-xl pt-4 pb-2 px-2 sm:p-0">
           <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={() => sortBooks("title")}
             className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
@@ -61,6 +60,9 @@ const Settings = ({
           </button>
 
           <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={() => sortBooks("year")}
             className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
@@ -70,6 +72,9 @@ const Settings = ({
           </button>
 
           <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={() => sortBooks("dewey")}
             className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
@@ -80,6 +85,9 @@ const Settings = ({
           </button>
 
           <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={handleShuffleBooks}
             className="raised transition-all px-2 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
@@ -91,6 +99,9 @@ const Settings = ({
       )}
       <div className="flex gap-2">
         <button
+          style={{
+            backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+          }}
           onClick={handleMenu}
           className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
         >
@@ -100,6 +111,9 @@ const Settings = ({
         </button>
 
         <button
+          style={{
+            backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+          }}
           onClick={handleModal}
           className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
         >

@@ -1,14 +1,15 @@
 import React from "react";
 
 const About = ({ isAboutVisible }) => {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+
   return (
     <section
       style={{
-        // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
-        backgroundImage: `url(images/old-wall.png)`,
+        backgroundImage: `url(${apiBasePath}/images/old-wall.png)`,
       }}
       className={`transition-all text-black max-w-md text-justify p-4 m-2 relative shadow-xl bg-orange-200 rounded-lg border-2 border-orange-300 ${
-        isAboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        isAboutVisible ? "visible opacity-100 translate-y-0" : "hidden opacity-0 translate-y-6"
       }`}
     >
       <div>

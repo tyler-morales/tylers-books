@@ -7,6 +7,8 @@ import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 
 export default function Home() {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+
   const containerRef = useRef(null);
   const inputRef = useRef("");
 
@@ -52,7 +54,6 @@ export default function Home() {
       console.log("Base Path:", process.env.NEXT_PUBLIC_BASE_PATH || "/");
       console.log("API Base Path:", process.env.NEXT_PUBLIC_API_BASE_PATH);
       try {
-        const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
         const response = await fetch(`${apiBasePath}/books.json`);
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.statusText}`);
@@ -123,8 +124,7 @@ export default function Home() {
     <>
       <nav
         style={{
-          // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
-          backgroundImage: "url(/images/wood.jpg)",
+          backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
         }}
         className="relative shadow-lg z-10 flex gap-2 flex-wrap px-2 items-center justify-center sm:justify-start sm:gap-4 sm:h-[40px] py-2 sm:p-0"
       >
@@ -161,7 +161,7 @@ export default function Home() {
       <div
         className="h-[50px] flex items-center w-full absolute bottom-0"
         style={{
-          backgroundImage: `url(/images/wood.jpg)`, // local env
+          backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
         }}
       >
         <Settings

@@ -13,6 +13,7 @@ export default function Book({
   onHover,
   bookSizeMultiplier,
 }) {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { title, author, route, year, genre, deweyDecimal } = data;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -98,8 +99,8 @@ export default function Book({
           alt={`Book spine of ${title}`}
           width={imageSize?.width}
           height={imageSize?.height}
-          // src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/${route}`} // production env
-          src={`/images/${route}`} // local env
+          src={`${apiBasePath}/images/${route}`} // production env
+          // src={`/images/${route}`} // local env
           onLoad={handleImageLoad}
           unoptimized={true}
           onMouseEnter={handleMouseEnter}
@@ -114,8 +115,7 @@ export default function Book({
           <div
             className="rounded-l-md rounded-md z-50 shadow-xl w-[300px] h-[200px] mr-1 bg-cover"
             style={{
-              // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
-              backgroundImage: `url(/images/catalog-card.png)`, // local env
+              backgroundImage: `url(${apiBasePath}/images/catalog-card.png)`,
               boxShadow: "5px 3px 5px black",
             }}
           >
