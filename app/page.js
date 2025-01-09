@@ -94,22 +94,34 @@ export default function Home() {
     }
   };
 
+  // Set search query equal to the user's input
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <>
-      <Settings
-        inputRef={inputRef}
-        books={books}
-        setBooks={setBooks}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        handleShuffleBooks={handleShuffleBooks}
-        bookSizeMultiplier={bookSizeMultiplier}
-        setBookSizeMultiplier={setBookSizeMultiplier}
-      />
+      <nav
+        style={{
+          // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
+          backgroundImage: "url(/images/wood.jpg)",
+        }}
+        className="flex gap-4 flex-wrap px-2 h-[40px] items-center"
+      >
+        <Plaque target={containerRef} />
 
-      <section className="w-full max-h-[740px] overflow-y-scroll m-0 p-0 bottom-0 absolute scroll-hidden">
+        {/* Search bar */}
+        {/* <h3 className="font-black text-white drop-shadow-[0_2px_0_rgba(0,0,0,1)]">Search</h3> */}
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search by title or author"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="sunken border-b-2 border-green-400 focus:border-b-2 outline-blue-500 placeholder:text-orange-300 font-black text-white rounded-md px-2 py-1 w-72"
+        />
+      </nav>
+      <section className="w-full max-h-[750px] overflow-y-scroll m-0 p-0 bottom-0 absolute scroll-hidden">
         {/* Non-scrollable section BOOKSHELF */}
         <ul
           className="flex w-max items-baseline min-w-[100vw] px-4"
@@ -131,7 +143,7 @@ export default function Home() {
 
         {/* Scrollable section 1 SHELF BOTTOM */}
         <div
-          className="h-[40px] flex items-center"
+          className="h-[50px] flex items-center"
           style={{
             width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
             // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
@@ -139,8 +151,18 @@ export default function Home() {
           }}
           onMouseOver={() => handleScroll(false)}
         >
-          {/* Plaque */}
-          <Plaque target={targetDivRef} />
+          <Settings
+            inputRef={inputRef}
+            books={books}
+            setBooks={setBooks}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            handleShuffleBooks={handleShuffleBooks}
+            bookSizeMultiplier={bookSizeMultiplier}
+            setBookSizeMultiplier={setBookSizeMultiplier}
+          />
         </div>
 
         {/* Scrollable section 2 ABOUT SECTION */}
