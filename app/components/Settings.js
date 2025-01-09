@@ -6,17 +6,19 @@ const Settings = ({
   books,
   sortOrder,
   handleShuffleBooks,
-  inputRef,
-  searchQuery,
-  setSearchQuery,
-  bookSizeMultiplier,
-  setBookSizeMultiplier,
+  onStateChange,
+  sharedState,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   // Reset size of book to base
   // const handleReset = () => {
   //   setBookSizeMultiplier(4.1); // Reset to default
   // };
+
+  const handleModal = () => {
+    onStateChange(!sharedState); // Send the new value to the parent
+  };
 
   // Sort books based on criteria
   const sortBooks = (criteria) => {
@@ -46,32 +48,32 @@ const Settings = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row absolute sm:relative bottom-1 sm:bottom-0 sm:items-center gap-2 px-2 z-[99] w-max">
+    <div className="flex flex-col sm:flex-row absolute sm:relative bottom-1 sm:bottom-0 sm:items-center gap-2 px-2 z-[99] sm:w-max w-full">
       {isOpen && (
-        <>
+        <div className="flex sm:flex-row flex-col gap-2 shadow-xl pt-4 pb-2 px-2 sm:p-0">
           <button
             onClick={() => sortBooks("title")}
-            className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+            className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
-            <span className="font-fustat font-extrabold text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
               Alphabetically ({sortOrder.title === "asc" ? "A-Z" : "Z-A"})
             </span>
           </button>
 
           <button
             onClick={() => sortBooks("year")}
-            className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+            className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
-            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
               Published Year ({sortOrder.year === "asc" ? "Oldest First" : "Newest First"}){" "}
             </span>
           </button>
 
           <button
             onClick={() => sortBooks("dewey")}
-            className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+            className="raised transition-all px-4 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
-            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
               {" "}
               Dewey Decimal ({sortOrder.dewey === "asc" ? "Low-High" : "High-Low"})
             </span>
@@ -79,23 +81,33 @@ const Settings = ({
 
           <button
             onClick={handleShuffleBooks}
-            className="raised transition-all px-2 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+            className="raised transition-all px-2 sm:py-1 py-3 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
-            <span className="font-black text-orange-200 drop-shadow-[0_1px_0_rgba(0,0,0,1.0)]">
+            <span className="font-black text-orange-200 drop-shadow-[0_1px_0_rgba(0,0,0,1.0)] text-lg sm:text-base">
               🔀
             </span>
           </button>
-        </>
+        </div>
       )}
-      <button
-        onClick={handleMenu}
-        className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
-      >
-        <span className="font-black text-orange-200 drop-shadow-[0_1px_0_rgba(0,0,0,1.0)]">
-          {isOpen ? "Close" : "Sort"}
-        </span>
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={handleMenu}
+          className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+        >
+          <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+            {isOpen ? "Close sort menu" : "Sort"}
+          </span>
+        </button>
 
+        <button
+          onClick={handleModal}
+          className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+        >
+          <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+            {sharedState ? "Close About" : "About"}
+          </span>
+        </button>
+      </div>
       {/* Slider */}
       {/* <div className="flex items-center gap-2">
         <label htmlFor="bookSizeSlider" className="mr-2">

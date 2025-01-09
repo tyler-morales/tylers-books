@@ -9,16 +9,27 @@ import Settings from "./components/Settings";
 export default function Home() {
   const containerRef = useRef(null);
   const inputRef = useRef("");
-  const targetDivRef = useRef(null);
 
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState({ title: "asc", dateFinished: "asc", year: "asc" });
   const [selectedBook, setSelectedBook] = useState(null);
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4.1);
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  // Create state that sets bookSizeMultiplier to 5 when on small screens and 4 to larger screens
+  const [bookSizeMultiplier, setBookSizeMultiplier] = useState(window.innerWidth < 640 ? 5 : 4);
 
-  const [isScrollable, setIsScrollable] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setBookSizeMultiplier(window.innerWidth < 640 ? 5 : 4);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -83,20 +94,13 @@ export default function Home() {
       book.author.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleScroll = (scrollability) => {
-    // A section is deemed scrollable,
-    if (scrollability) {
-      setIsScrollable(true);
-    }
-
-    if (scrollability == false) {
-      setIsScrollable(false);
-    }
-  };
-
   // Set search query equal to the user's input
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleStateChange = () => {
+    setIsAboutVisible(!isAboutVisible);
   };
 
   return (
@@ -106,12 +110,10 @@ export default function Home() {
           // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
           backgroundImage: "url(/images/wood.jpg)",
         }}
-        className="flex gap-2 flex-wrap px-2 items-center justify-center sm:justify-start sm:gap-4 sm:h-[40px] py-2 sm:p-0"
+        className="relative shadow-lg z-10 flex gap-2 flex-wrap px-2 items-center justify-center sm:justify-start sm:gap-4 sm:h-[40px] py-2 sm:p-0"
       >
         <Plaque target={containerRef} />
-
         {/* Search bar */}
-        {/* <h3 className="font-black text-white drop-shadow-[0_2px_0_rgba(0,0,0,1)]">Search</h3> */}
         <input
           ref={inputRef}
           type="text"
@@ -121,13 +123,10 @@ export default function Home() {
           className="sunken w-full border-b-2 border-green-400 focus:border-b-2 outline-blue-500 placeholder:text-orange-300 font-black text-white rounded-md px-2 py-1 sm:w-72"
         />
       </nav>
-      <section className="w-full max-h-[750px] overflow-y-scroll m-0 p-0 bottom-0 absolute scroll-hidden">
-        {/* Non-scrollable section BOOKSHELF */}
-        <ul
-          className="flex w-max items-baseline min-w-[100vw] px-4"
-          ref={containerRef}
-          onMouseOver={() => handleScroll(true)}
-        >
+
+      {/* Bookcase */}
+      <section className="max-h-[750px] w-screen m-0 p-0 bottom-[51px] absolute scroll-hidden">
+        <ul className="flex w-max items-baseline min-w-[100vw] px-4" ref={containerRef}>
           {filteredBooks.map((book, index) => (
             <Book
               key={book.id}
@@ -140,34 +139,27 @@ export default function Home() {
             />
           ))}
         </ul>
-
-        {/* Scrollable section 1 SHELF BOTTOM */}
-        <div
-          className="h-[50px] flex items-center"
-          style={{
-            width: `${containerRef.current?.scrollWidth || 0}px`, // Sync the width with the scrollable content
-            // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
-            backgroundImage: `url(/images/wood.jpg)`, // local env
-          }}
-          onMouseOver={() => handleScroll(false)}
-        >
-          <Settings
-            // inputRef={inputRef}
-            books={books}
-            setBooks={setBooks}
-            sortOrder={sortOrder}
-            setSortOrder={setSortOrder}
-            handleShuffleBooks={handleShuffleBooks}
-            // searchQuery={searchQuery}
-            // setSearchQuery={setSearchQuery}
-            // bookSizeMultiplier={bookSizeMultiplier}
-            // setBookSizeMultiplier={setBookSizeMultiplier}
-          />
-        </div>
-
-        {/* Scrollable section 2 ABOUT SECTION */}
-        <About ref={targetDivRef} isScrollable={isScrollable} />
       </section>
+
+      {/* Bottom shelf */}
+      <div
+        className="h-[50px] flex items-center w-full absolute bottom-0"
+        style={{
+          backgroundImage: `url(/images/wood.jpg)`, // local env
+        }}
+      >
+        <Settings
+          books={books}
+          setBooks={setBooks}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          handleShuffleBooks={handleShuffleBooks}
+          onStateChange={handleStateChange}
+          sharedState={isAboutVisible}
+        />
+      </div>
+
+      <About isAboutVisible={isAboutVisible} />
     </>
   );
 }

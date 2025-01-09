@@ -1,22 +1,27 @@
 import React from "react";
 
-const About = ({ isScrollable, ref }) => {
+const About = ({ isAboutVisible }) => {
   return (
     <section
-      ref={ref}
-      className={`h-0 max-w-md text-justify p-4 ${isScrollable ? "hidden" : "visible"}`}
+      style={{
+        // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
+        backgroundImage: `url(images/old-wall.png)`,
+      }}
+      className={`transition-all text-black max-w-md text-justify p-4 m-2 relative shadow-xl bg-orange-200 rounded-lg border-2 border-orange-300 ${
+        isAboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      }`}
     >
       <div>
-        <hr className="h-[2px] bg-white border-0 mb-2 mt-4" />
-        <hr className="h-[4px] bg-white border-0 mb-2" />
+        <hr className="h-[2px] bg-orange-950 border-0 mb-2" />
+        <hr className="h-[4px] bg-orange-950 border-0 mb-2" />
 
-        <h3 className="text-2xl uppercase font-serif font-black">Tyler&apos;s Books</h3>
+        <h3 className="text-2xl uppercase font-serif font-black text-center">Tyler&apos;s Books</h3>
         <h4 className="uppercase font-black text-sm  font-serif">
           A collection of books I own on my bookshelf
         </h4>
 
-        <hr className="h-[4px] bg-white border-0 mb-2 mt-2" />
-        <hr className="h-[2px] bg-white border-0 mb-4" />
+        <hr className="h-[4px] bg-orange-950 border-0 mb-2 mt-2" />
+        <hr className="h-[2px] bg-orange-950 border-0 mb-4" />
 
         <p className="mb-2">
           The idea for this projet came from following one of my favorite design accounts on
@@ -27,7 +32,7 @@ const About = ({ isScrollable, ref }) => {
             target="_blank"
           >
             Design Team of One.
-          </a>
+          </a>{" "}
           In one of her posts, she highlighted a project by{" "}
           <a href="https://books.omarmhmmd.com/" target="_blank" className="underline">
             Omar Mohammad
