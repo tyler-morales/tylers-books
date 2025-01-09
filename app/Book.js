@@ -16,8 +16,8 @@ export default function Book({
   const { title, author, route, year, genre, deweyDecimal } = data;
 
   const [isHovered, setIsHovered] = useState(false);
-  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const originalSize = useRef({ width: 0, height: 0 }); // Store original size
+  const [imageSize, setImageSize] = useState({ width: 0, height: 1000 });
+  const originalSize = useRef({ width: 0, height: 1000 }); // Store original size
 
   useEffect(() => {
     const calculateImageSize = (naturalWidth, naturalHeight) => ({
@@ -80,10 +80,14 @@ export default function Book({
 
   return (
     <motion.li
-      initial={{ y: -500 }}
-      animate={{ y: 0 }}
-      exit={{ y: 0 }}
-      // transition={{ duration: 4.4 }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+          default: { type: "spring" },
+          opacity: { ease: "linear" },
+        },
+      }}
       layout
       className="relative flex items-end gap-2"
     >
