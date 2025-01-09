@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,4 +32,15 @@ body {
 
 .scroll-hidden::-webkit-scrollbar {
   display: none; /* Chrome, Safari: hide scrollbar */
+}
+
+.sunken {
+  box-shadow: rgb(19, 0, 0) 0px 0px 6px 1px inset;
+  background-color: rgba(15, 1, 1, 0.25);
+}
+
+.raised {
+  box-shadow: rgb(19, 0, 0) 0px 0px 6px 1px;
+  background-color: rgba(15, 1, 1, 0.25);
+  background-image: url(/images/wood.jpg);
 }

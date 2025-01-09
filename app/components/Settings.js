@@ -51,42 +51,55 @@ const Settings = ({
         // backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/wood-texture.png)`, // production env
         backgroundImage: "url(/images/wood.jpg)",
       }}
-      className="flex gap-2 flex-wrap px-2"
+      className="flex gap-2 flex-wrap px-2 h-[50px] items-center"
     >
       <button
         onClick={() => sortBooks("title")}
-        className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 w-max"
+        className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
       >
-        Sort Alphabetically ({sortOrder.title === "asc" ? "A-Z" : "Z-A"})
+        <span className="font-fustat font-extrabold text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+          Sort Alphabetically ({sortOrder.title === "asc" ? "A-Z" : "Z-A"})
+        </span>
       </button>
+
       <button
         onClick={() => sortBooks("year")}
-        className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
+        className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
       >
-        Sort by Year ({sortOrder.year === "asc" ? "Oldest First" : "Newest First"})
+        <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+          Sort by Year ({sortOrder.year === "asc" ? "Oldest First" : "Newest First"}){" "}
+        </span>
       </button>
+
       <button
         onClick={() => sortBooks("dewey")}
-        className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
+        className="raised transition-all px-4 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
       >
-        Sort by Dewey Decimal ({sortOrder.dewey === "asc" ? "Low-High" : "High-Low"})
+        <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)]">
+          {" "}
+          Sort by Dewey Decimal ({sortOrder.dewey === "asc" ? "Low-High" : "High-Low"})
+        </span>
       </button>
+
       <button
         onClick={handleShuffleBooks}
-        className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2"
+        className="raised transition-all px-2 py-1 rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
       >
-        🔀
+        <span className="font-black text-orange-200 drop-shadow-[0_1px_0_rgba(0,0,0,1.0)]">🔀</span>
       </button>
+
+      {/* Search bar */}
       <input
         ref={inputRef}
         type="text"
         placeholder="Search by title or author"
         value={searchQuery}
         onChange={handleSearchChange}
-        className="border-2 border-gray-600 bg-gray-300 text-black rounded-md px-2 py-1 w-72"
+        className="sunken border-b-2 border-green-400 focus:border-b-2 outline-blue-500 placeholder:text-orange-300 font-black text-white rounded-md px-2 py-1 w-72"
       />
+
       {/* Slider */}
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <label htmlFor="bookSizeSlider" className="mr-2">
           Book Size:
         </label>
@@ -107,7 +120,7 @@ const Settings = ({
         >
           Reset
         </button>
-      </div>
+      </div> */}
     </nav>
   );
 };
