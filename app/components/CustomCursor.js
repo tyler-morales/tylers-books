@@ -8,8 +8,8 @@ export default function CustomCursor() {
   useEffect(() => {
     // Create cursor element
     const cursor = document.createElement("div");
-    cursor.style.width = "32px";
-    cursor.style.height = "32px";
+    cursor.style.width = "48px";
+    cursor.style.height = "48px";
     cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
     cursor.style.backgroundSize = "contain";
     cursor.style.position = "absolute";
