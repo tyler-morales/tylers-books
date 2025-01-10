@@ -8,7 +8,7 @@ const About = ({ isAboutVisible }) => {
       style={{
         backgroundImage: `url(${apiBasePath}/images/old-wall.png)`,
       }}
-      className={`h-[550px] sm:h-auto overflow-y-scroll transition-all text-black max-w-md text-justify p-4 m-6 relative shadow-xl bg-orange-200 rounded-lg border-2 border-orange-300 scroll-hidden ${
+      className={`h-[550px] sm:h-auto overflow-y-scroll transition-all text-black max-w-md text-justify p-4 m-6 relative shadow-xl bg-orange-200 rounded-lg border-2 border-orange-300 scroll-hidden z-50 ${
         isAboutVisible ? "visible opacity-100 translate-y-0" : "hidden opacity-0 translate-y-6"
       }`}
     >
