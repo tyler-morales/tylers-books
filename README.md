@@ -23,4 +23,6 @@ bun dev
 - [ ] Bug: animation when book is selected is weird
 - [ ] Feature: catalog card flip onClick
 - [ ] Feature: mobile friendly- stack books vertically
-- [ ] Bug: mobile responsiveness
+- [x] Bug: mobile responsiveness
+- [ ] Bug: about section does not transition smoothly
+- [ ] Improvement: scroll books on grab and pull
