@@ -132,6 +132,7 @@ export default function Home() {
         {/* Search bar */}
         <input
           ref={inputRef}
+          data-cursor-type="pencil"
           type="text"
           placeholder="Search by title or author"
           value={searchQuery}
