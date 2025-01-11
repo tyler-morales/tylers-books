@@ -1,4 +1,4 @@
-"use client"; // Important for Next.js since `document` and `window` are client-side
+"use client";
 
 import { useState, useEffect } from "react";
 
@@ -10,7 +10,7 @@ export default function CustomCursor() {
     const cursor = document.createElement("div");
     cursor.style.width = "48px";
     cursor.style.height = "48px";
-    cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
+    // cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
     cursor.style.backgroundSize = "contain";
     cursor.style.position = "absolute";
     cursor.style.pointerEvents = "none"; // Ensures it's "invisible" to clicks
@@ -20,6 +20,8 @@ export default function CustomCursor() {
     document.body.appendChild(cursor);
 
     const updateCursorStyle = () => {
+      console.log(cursorType);
+
       switch (cursorType) {
         case "default":
           cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
@@ -27,7 +29,11 @@ export default function CustomCursor() {
           break;
         case "pencil":
           cursor.style.backgroundImage = "url(/images/assets/pencil-cursor.png)";
-          cursor.style.transform = "translate(-10px, -20px )"; // Center the cursor
+          cursor.style.transform = "translate(-10px, -20px )";
+          break;
+        case "fist":
+          cursor.style.backgroundImage = "url(/images/assets/fist-cursor.png";
+          cursor.style.transform = "translate(-10px, -20px) rotate(-45deg)";
           break;
         default:
           cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
@@ -38,6 +44,8 @@ export default function CustomCursor() {
 
     // Mouse move handler
     const handleMouseMove = (e) => {
+      console.log(e);
+
       cursor.style.top = `${e.clientY}px`;
       cursor.style.left = `${e.clientX}px`;
 
@@ -52,13 +60,22 @@ export default function CustomCursor() {
     };
 
     // Mouse down/up for "click effect"
-    const handleMouseDown = () => {
-      if (cursorType == "default") {
-        cursor.style.transform = "translate(-16px, -5px) scale(0.8)";
-      }
+    const handleMouseDown = (e) => {
+      const hoveredElement = e.target;
+
+      // if (hoveredElement.getAttribute("data-cursor-type" !== "pencil")) {
+      // }
+      cursor.style.backgroundImage = "url(/images/assets/fist-cursor.png)";
+      cursor.style.transform = "translate(-10px, -20px) rotate(-45deg)";
+      // setCursorType("fist");
+      // if (cursorType == "default") {
+      //   cursor.style.transform = "translate(-16px, -5px) scale(0.8)";
+      // }
     };
 
     const handleMouseUp = () => {
+      cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
+      setCursorType("default");
       if (cursorType == "default") {
         cursor.style.transform = "translate(-16px, -5px) scale(1)";
       }
