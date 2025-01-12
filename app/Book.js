@@ -4,6 +4,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useDragDetection from "./hooks/useDragDetection";
 
 export default function Book({
   data,
@@ -15,7 +16,9 @@ export default function Book({
 }) {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { title, author, route, year, genre, deweyDecimal } = data;
+  const { handleMouseDown, handleMouseMove, handleMouseUp } = useDragDetection();
 
+  const [isDragging, setIsDragging] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 1000 });
   const originalSize = useRef({ width: 0, height: 1000 }); // Store original size
@@ -80,6 +83,21 @@ export default function Book({
     return className;
   }
 
+  // const handleMouseDown = () => {
+  //   setIsDragging(false); // Reset dragging to false at the start of the action
+  // };
+
+  // const handleMouseMove = () => {
+  //   setIsDragging(true); // If the mouse moves, set dragging to true
+  // };
+
+  // const handleMouseUp = () => {
+  //   if (isDragging) {
+  //     return; // Prevent button click if it was a drag
+  //   }
+  //   onSelect(data); // Fire the click event only if it wasn't a drag
+  // };
+
   return (
     <motion.li
       animate={{
@@ -93,20 +111,20 @@ export default function Book({
       layout
       className="relative flex items-end gap-2"
     >
-      <button onClick={() => onSelect(data)}>
+      <button onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
         {/* Book */}
         <Image
           alt={`Book spine of ${title}`}
           width={imageSize?.width}
           height={imageSize?.height}
-          src={`${apiBasePath}/images/${route}`} // production env
-          // src={`/images/${route}`} // local env
+          src={`${apiBasePath}/images/${route}`}
           onLoad={handleImageLoad}
           unoptimized={true}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={getImageClassName(isHovered, isSelected, isAnyHovered)}
           style={{ boxShadow: "5px 3px 5px black" }}
+          onDragStart={(e) => e.preventDefault()} // Prevent ghost image
         />
       </button>
       {isSelected && (

@@ -10,6 +10,7 @@ export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
 
   const containerRef = useRef(null);
+  const dragableRef = useRef(null);
   const inputRef = useRef("");
 
   const [books, setBooks] = useState([]);
@@ -21,6 +22,7 @@ export default function Home() {
   // Create state that sets bookSizeMultiplier to 5 when on small screens and 4 to larger screens
   const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4);
 
+  // Update book size
   useEffect(() => {
     // Update book size multiplier after mounting
     const handleResize = () => {
@@ -37,18 +39,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setBookSizeMultiplier(window.innerWidth < 640 ? 5 : 4);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+  // Get books (data)
   useEffect(() => {
     async function fetchBooks() {
       console.log("Base Path:", process.env.NEXT_PUBLIC_BASE_PATH || "/");
@@ -59,7 +50,7 @@ export default function Home() {
           throw new Error(`Failed to fetch: ${response.statusText}`);
         }
         const data = await response.json();
-        setBooks(shuffleArray(data));
+        setBooks(data.sort(() => Math.random() - 0.5));
       } catch (error) {
         console.error("Error fetching books:", error);
       }
@@ -67,17 +58,19 @@ export default function Home() {
     fetchBooks();
   }, []);
 
-  const shuffleArray = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
+  const handleShuffleBooks = useCallback(() => {
+    setBooks([...books].sort(() => Math.random() - 0.5)); // random shuffle
+  }, [books]);
+
+  const filteredBooks = books.filter(
+    (book) =>
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleSelectBook = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
   };
-
-  const handleShuffleBooks = useCallback(() => {
-    setBooks(shuffleArray([...books]));
-  }, [books]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -105,12 +98,6 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleShuffleBooks]);
 
-  const filteredBooks = books.filter(
-    (book) =>
-      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      book.author.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   // Set search query equal to the user's input
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -119,6 +106,55 @@ export default function Home() {
   const handleStateChange = () => {
     setIsAboutVisible(!isAboutVisible);
   };
+
+  useEffect(() => {
+    const ele = dragableRef.current;
+    ele.style.cursor = "grab";
+
+    let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+    const mouseDownHandler = function (e) {
+      ele.style.cursor = "grabbing";
+      ele.style.userSelect = "none";
+
+      pos = {
+        left: ele.scrollLeft,
+        top: ele.scrollTop,
+        // Get the current mouse position
+        x: e.clientX,
+        y: e.clientY,
+      };
+
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function (e) {
+      // How far the mouse has been moved
+      const dx = e.clientX - pos.x;
+      // const dy = e.clientY - pos.y;
+
+      // Scroll the element
+      // ele.scrollTop = pos.top - dy;
+      ele.scrollLeft = pos.left - dx;
+    };
+
+    const mouseUpHandler = function () {
+      ele.style.cursor = "grab";
+      ele.style.removeProperty("user-select");
+
+      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
+    };
+
+    // Attach the handler
+    ele.addEventListener("mousedown", mouseDownHandler);
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      ele.removeEventListener("mousedown", mouseDownHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -142,8 +178,11 @@ export default function Home() {
       </nav>
 
       {/* Bookcase */}
-      <section className="max-h-[750px] w-screen m-0 p-0 bottom-[51px] absolute scroll-hidden">
-        <ul className="flex w-max items-baseline min-w-[100vw] px-4" ref={containerRef}>
+      <section
+        ref={dragableRef}
+        className="max-h-[750px] w-screen m-0 p-0 bottom-[51px] absolute scroll-hidden"
+      >
+        <ul className="flex w-max items-baseline min-w-[100vw] px-4">
           {filteredBooks.map((book, index) => (
             <Book
               key={book.id}
