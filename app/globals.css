@@ -11,7 +11,8 @@ html {
   scroll-behavior: smooth;
   overflow: hidden; /* prevent screen from moving due to custom cursor */
 }
-* {
+*,
+button {
   cursor: none; /* Remove default cursor types */
 }
 

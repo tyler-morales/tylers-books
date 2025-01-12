@@ -39,23 +39,27 @@ export default function useCustomCursor() {
     const handleMouseMove = (e) => {
       cursor.style.top = `${e.clientY}px`;
       cursor.style.left = `${e.clientX}px`;
-    };
 
-    const handleMouseDown = () => {
-      if (false) {
+      const hoveredElement = e.target;
+
+      if (hoveredElement.getAttribute("data-cursor-type") === "pencil") {
+        setCursorType("pencil"); // Show pencil cursor when hovering over input
+      } else if (e.buttons === 1) {
+        setCursorType("fist"); // Show fist cursor during dragging
+      } else {
+        setCursorType("default"); // Default cursor when mouse not down
       }
-      setCursorType("fist");
     };
 
     const handleMouseUp = () => setCursorType("default");
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mousedown", handleMouseDown);
+    // window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
+      // window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       cursor.remove();
     };
