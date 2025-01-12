@@ -5,9 +5,11 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import About from "./components/about";
 import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
+import useCustomCursor from "./hooks/useCustomCursor";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+  const { setCursorType } = useCustomCursor(); // Access the hook
 
   const containerRef = useRef(null);
   const dragableRef = useRef(null);
@@ -169,6 +171,8 @@ export default function Home() {
         <input
           ref={inputRef}
           data-cursor-type="pencil"
+          onMouseEnter={() => setCursorType("pencil")}
+          onMouseLeave={() => setCursorType("default")}
           type="text"
           placeholder="Search by title or author"
           value={searchQuery}
