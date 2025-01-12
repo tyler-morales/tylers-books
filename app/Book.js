@@ -18,7 +18,6 @@ export default function Book({
   const { title, author, route, year, genre, deweyDecimal } = data;
   const { handleMouseDown, handleMouseMove, handleMouseUp } = useDragDetection();
 
-  const [isDragging, setIsDragging] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 1000 });
   const originalSize = useRef({ width: 0, height: 1000 }); // Store original size
@@ -46,7 +45,8 @@ export default function Book({
     setImageSize(calculateImageSize(naturalWidth, naturalHeight)); // Set initial size
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
+    e.preventDefault();
     setIsHovered(true);
     onHover(data);
   };
@@ -83,21 +83,10 @@ export default function Book({
     return className;
   }
 
-  // const handleMouseDown = () => {
-  //   setIsDragging(false); // Reset dragging to false at the start of the action
-  // };
-
-  // const handleMouseMove = () => {
-  //   setIsDragging(true); // If the mouse moves, set dragging to true
-  // };
-
-  // const handleMouseUp = () => {
-  //   if (isDragging) {
-  //     return; // Prevent button click if it was a drag
-  //   }
-  //   onSelect(data); // Fire the click event only if it wasn't a drag
-  // };
-
+  const handleBookClick = (e, data) => {
+    e.preventDefault();
+    onSelect(data);
+  };
   return (
     <motion.li
       animate={{
@@ -111,7 +100,18 @@ export default function Book({
       layout
       className="relative flex items-end gap-2"
     >
-      <button onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+      <button
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={() => handleMouseUp(() => onSelect(data))}
+        // using onkeydown instead of onclick b/c
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onSelect(data);
+          }
+        }}
+      >
         {/* Book */}
         <Image
           alt={`Book spine of ${title}`}
@@ -148,7 +148,6 @@ export default function Book({
               {/* Bottom notes */}
               <div className="flex items-center justify-between mt-4 font-mono">
                 <div className="flex flex-col">
-                  {/* <span className="text-xs">Cataloged on</span> */}
                   <span className="text-sm text-red-500 -rotate-2 uppercase font-bold">
                     Jan 7 2025
                   </span>
@@ -162,7 +161,7 @@ export default function Book({
       {isHovered && !isSelected && (
         <div
           className="absolute top-0 left-0 bg-white p-2 text-black z-10 rounded-md shadow-md ml-2 mt-2 min-w-max"
-          onMouseEnter={handleMouseEnter}
+          onMouseEnter={(e) => handleMouseEnter(e)}
           onMouseLeave={handleMouseLeave}
         >
           <h3 className="text-lg font-bold">{title}</h3>
