@@ -51,15 +51,23 @@ export default function useCustomCursor() {
       }
     };
 
-    const handleMouseUp = () => setCursorType("default");
+    const handleMouseUp = () => {
+      cursor.style.transition = "transform 0.1s ease-out"; // Smooth reset
+      cursor.style.transform = cursor.style.transform.replace(" scale(0.8)", ""); // Reset cursor to normal size
+      setCursorType("default");
+    };
+    const handleMouseDown = () => {
+      cursor.style.transition = "transform 0.1s ease-out"; // Smooth animation
+      cursor.style.transform += " scale(0.8)"; // Shrink cursor when mouse down
+    };
 
     window.addEventListener("mousemove", handleMouseMove);
-    // window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      // window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       cursor.remove();
     };
