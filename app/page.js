@@ -74,7 +74,9 @@ export default function Home() {
   );
 
   const handleSelectBook = (book) => {
-    setSelectedBook(selectedBook === book ? null : book);
+    const isSelected = selectedBook === book;
+    setSelectedBook(isSelected ? null : book);
+    playSoundEffect(isSelected ? "door-close" : "door-open");
   };
 
   // Keyboard shortcuts

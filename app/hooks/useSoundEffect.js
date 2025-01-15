@@ -9,7 +9,8 @@ export default function useSoundManager() {
   const { isSoundOn } = useSoundContext(); // Access global state
   const [playClickSound] = useSound("/sounds/mouse-click.mp3", { volume: 0.5 });
   const [playShuffleSound] = useSound("/sounds/shuffle.mp3", { volume: 0.6 });
-  const [playSuccessSound] = useSound("/sounds/success.mp3", { volume: 0.4 });
+  const [playDoorOpen] = useSound("/sounds/door-open.mp3", { volume: 0.5 });
+  const [playDoorClose] = useSound("/sounds/door-close.mp3", { volume: 0.5 });
 
   // Background Music
   const [playMusic, { stop: stopMusic }] = useSound("/sounds/lofi-study.mp3", {
@@ -37,8 +38,11 @@ export default function useSoundManager() {
       case "shuffle":
         playShuffleSound();
         break;
-      case "success":
-        playSuccessSound();
+      case "door-open":
+        playDoorOpen();
+        break;
+      case "door-close":
+        playDoorClose();
         break;
       default:
         console.warn(`Unknown sound type: ${soundType}`);
