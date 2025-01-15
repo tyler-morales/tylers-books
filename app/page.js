@@ -6,10 +6,13 @@ import About from "./components/about";
 import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
+import { useSoundContext } from "./contexts/SoundContext";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { setCursorType } = useCustomCursor(); // Access the hook
+  const { toggleSoundEffects, toggleMusic, playSoundEffect, isSoundOn, isMusicOn } =
+    useSoundContext();
 
   const containerRef = useRef(null);
   const dragableRef = useRef(null);
@@ -61,8 +64,9 @@ export default function Home() {
   }, []);
 
   const handleShuffleBooks = useCallback(() => {
+    playSoundEffect("shuffle");
     setBooks([...books].sort(() => Math.random() - 0.5)); // random shuffle
-  }, [books]);
+  }, [books, playSoundEffect]);
 
   const filteredBooks = books.filter(
     (book) =>
@@ -71,7 +75,9 @@ export default function Home() {
   );
 
   const handleSelectBook = (book) => {
-    setSelectedBook(selectedBook === book ? null : book);
+    const isSelected = selectedBook === book;
+    setSelectedBook(isSelected ? null : book);
+    playSoundEffect(isSelected ? "door-close" : "door-open");
   };
 
   // Keyboard shortcuts

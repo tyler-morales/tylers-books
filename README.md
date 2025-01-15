@@ -25,4 +25,10 @@ bun dev
 - [ ] Feature: mobile friendly- stack books vertically
 - [x] Bug: mobile responsiveness
 - [ ] Bug: about section does not transition smoothly
-- [ ] Improvement: scroll books on grab and pull
+- [x] Improvement: scroll books on grab and pull
+- [ ] Feature: add audio/ sound effects
+  - [ ] Soothing background music
+  - [ ] sound effects on:
+    - [ ] books moving (shuffling)
+    - [ ] buttons clicked
+    - [ ] ui buttons to display the two buttons (on and off switch for each)
