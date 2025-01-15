@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useSoundManager from "../hooks/useSoundEffect";
 
 const Settings = ({
   setBooks,
@@ -9,10 +10,15 @@ const Settings = ({
   onStateChange,
   sharedState,
 }) => {
+  const { isSoundOn, isMusicOn, toggleSoundEffects, toggleMusic, playSoundEffect } =
+    useSoundManager();
+
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
+    console.log(`Calling shuffle, sound on: ${isSoundOn}`);
+    playSoundEffect();
     onStateChange(!sharedState); // Send the new value to the parent
   };
 
@@ -34,12 +40,13 @@ const Settings = ({
           return 0;
       }
     });
-
+    playSoundEffect("click");
     setBooks(sortedBooks);
     setSortOrder({ ...sortOrder, [criteria]: order });
   };
 
   const handleMenu = () => {
+    playSoundEffect("click");
     setIsOpen(!isOpen);
   };
 
@@ -97,31 +104,53 @@ const Settings = ({
           </button>
         </div>
       )}
-      <div className="flex gap-2">
-        <button
-          style={{
-            backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
-          }}
-          onClick={handleMenu}
-          className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
-        >
-          <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
-            {isOpen ? "Close sort menu" : "Sort"}
-          </span>
-        </button>
+      <div className="flex gap-2 justify-between items-center">
+        <div className="flex gap-2">
+          <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
+            onClick={handleMenu}
+            className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+          >
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+              {isOpen ? "Close sort menu" : "Sort"}
+            </span>
+          </button>
 
-        <button
-          style={{
-            backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
-          }}
-          onClick={handleModal}
-          className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
-        >
-          <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
-            {sharedState ? "Close About" : "About"}
-          </span>
-        </button>
+          <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
+            onClick={handleModal}
+            className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+          >
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+              {sharedState ? "Close About" : "About"}
+            </span>
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <button
+            // onClick={handleSoundEffects}
+            onClick={toggleSoundEffects}
+            className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+          >
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+              {isSoundOn ? "🔈" : "🔇"}
+            </span>
+          </button>
+          <button
+            onClick={toggleMusic}
+            className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
+          >
+            <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
+              {isMusicOn ? "🎵" : "❌"}
+            </span>
+          </button>
+        </div>
       </div>
+
       {/* Slider */}
       {/* <div className="flex items-center gap-2">
         <label htmlFor="bookSizeSlider" className="mr-2">
