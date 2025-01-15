@@ -6,10 +6,12 @@ import About from "./components/about";
 import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
+import useSoundManager from "./hooks/useSoundEffect";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { setCursorType } = useCustomCursor(); // Access the hook
+  const { playSoundEffect } = useSoundManager();
 
   const containerRef = useRef(null);
   const dragableRef = useRef(null);
@@ -61,6 +63,7 @@ export default function Home() {
   }, []);
 
   const handleShuffleBooks = useCallback(() => {
+    playSoundEffect("shuffle");
     setBooks([...books].sort(() => Math.random() - 0.5)); // random shuffle
   }, [books]);
 

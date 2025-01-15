@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SoundProvider } from "./contexts/SoundContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +21,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main className="bg-gradient-to-t from-slate-900 h-screen">{children}</main>
+        <main className="bg-gradient-to-t from-slate-900 h-screen">
+          <SoundProvider>{children}</SoundProvider>
+        </main>
       </body>
     </html>
   );

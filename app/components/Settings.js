@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSoundManager from "../hooks/useSoundEffect";
+import { useSoundContext } from "../contexts/SoundContext";
 
 const Settings = ({
   setBooks,
@@ -10,14 +11,13 @@ const Settings = ({
   onStateChange,
   sharedState,
 }) => {
-  const { isSoundOn, isMusicOn, toggleSoundEffects, toggleMusic, playSoundEffect } =
-    useSoundManager();
+  const { isMusicOn, toggleMusic, playSoundEffect } = useSoundManager();
+  const { isSoundOn, toggleSoundEffects } = useSoundContext();
 
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
-    console.log(`Calling shuffle, sound on: ${isSoundOn}`);
     playSoundEffect();
     onStateChange(!sharedState); // Send the new value to the parent
   };

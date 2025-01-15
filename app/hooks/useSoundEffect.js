@@ -1,11 +1,12 @@
 import { useState } from "react";
 import useSound from "use-sound";
+import { useSoundContext } from "../contexts/SoundContext";
 
 export default function useSoundManager() {
-  const [isSoundOn, setIsSoundOn] = useState(true);
   const [isMusicOn, setIsMusicOn] = useState(false);
 
   // Sound Effects
+  const { isSoundOn } = useSoundContext(); // Access global state
   const [playClickSound] = useSound("/sounds/mouse-click.mp3", { volume: 0.5 });
   const [playShuffleSound] = useSound("/sounds/shuffle.mp3", { volume: 0.6 });
   const [playSuccessSound] = useSound("/sounds/success.mp3", { volume: 0.4 });
@@ -15,10 +16,6 @@ export default function useSoundManager() {
     loop: true,
     volume: 0.1,
   });
-
-  const toggleSoundEffects = () => {
-    setIsSoundOn((prev) => !prev);
-  };
 
   const toggleMusic = () => {
     if (isMusicOn) {
@@ -51,7 +48,6 @@ export default function useSoundManager() {
   return {
     isSoundOn,
     isMusicOn,
-    toggleSoundEffects,
     toggleMusic,
     playSoundEffect,
   };
