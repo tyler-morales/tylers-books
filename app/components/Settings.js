@@ -145,7 +145,7 @@ const Settings = ({
             className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
             <span className="font-black text-orange-200 drop-shadow-[1px_2px_0px_rgba(0,0,0,1.0)] text-lg sm:text-base">
-              {isMusicOn ? "🎵" : "❌"}
+              {isMusicOn ? "⏸️" : "▶️"}
             </span>
           </button>
         </div>
