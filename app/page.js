@@ -7,7 +7,6 @@ import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
 import { useSoundContext } from "./contexts/SoundContext";
-// import useSoundManager from "./hooks/useSoundEffect";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
