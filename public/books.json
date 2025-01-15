@@ -178,5 +178,15 @@
     "dateFinished": "2019-01-03",
     "genre": "Classic Fiction",
     "deweyDecimal": "823.914"
+  },
+  {
+    "id": "019",
+    "title": "Siddhartha",
+    "author": "Hermann Hesse",
+    "route": "siddhartha.png",
+    "year": 1951,
+    "dateFinished": "2019-01-15",
+    "genre": "Philosophical fiction",
+    "deweyDecimal": "833.912"
   }
 ]
