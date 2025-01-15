@@ -3,7 +3,7 @@ import useSound from "use-sound";
 
 export default function useSoundManager() {
   const [isSoundOn, setIsSoundOn] = useState(true);
-  const [isMusicOn, setIsMusicOn] = useState(true);
+  const [isMusicOn, setIsMusicOn] = useState(false);
 
   // Sound Effects
   const [playClickSound] = useSound("/sounds/mouse-click.mp3", { volume: 0.5 });
@@ -11,9 +11,9 @@ export default function useSoundManager() {
   const [playSuccessSound] = useSound("/sounds/success.mp3", { volume: 0.4 });
 
   // Background Music
-  const [playMusic, { stop: stopMusic }] = useSound("/sounds/background-music.mp3", {
+  const [playMusic, { stop: stopMusic }] = useSound("/sounds/lofi-study.mp3", {
     loop: true,
-    volume: 0.2,
+    volume: 0.1,
   });
 
   const toggleSoundEffects = () => {
