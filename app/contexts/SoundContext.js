@@ -5,16 +5,20 @@ import useSound from "use-sound";
 const SoundContext = createContext();
 
 export const SoundProvider = ({ children }) => {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+
   // State
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [isMusicOn, setIsMusicOn] = useState(false);
 
   // Sound Effects
-  const [playClickSound] = useSound("/sounds/mouse-click.mp3", { volume: 0.5 });
-  const [playShuffleSound] = useSound("/sounds/shuffle.mp3", { volume: 0.6 });
-  const [playDoorOpen] = useSound("/sounds/door-open.mp3", { volume: 0.5 });
-  const [playDoorClose] = useSound("/sounds/door-close.mp3", { volume: 0.5 });
-  const [playMusic, { stop: stopMusic }] = useSound("/sounds/lofi-study.mp3", {
+  const [playClickSound] = useSound(`${apiBasePath}/sounds/mouse-click.mp3`, { volume: 0.5 });
+  const [playShuffleSound] = useSound(`${apiBasePath}/sounds/shuffle.mp3`, { volume: 0.6 });
+  const [playDoorOpen] = useSound(`${apiBasePath}/sounds/door-open.mp3`, { volume: 0.5 });
+  const [playDoorClose] = useSound(`${apiBasePath}/sounds/door-close.mp3`, { volume: 0.5 });
+
+  // Music
+  const [playMusic, { stop: stopMusic }] = useSound(`${apiBasePath}/sounds/lofi-study.mp3`, {
     loop: true,
     volume: 0.1,
   });
