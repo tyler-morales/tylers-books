@@ -54,6 +54,7 @@ const About = ({ isAboutVisible }) => {
       </div>
 
       <div className="text-sm mt-4">
+        <h4 className="italic">Credits</h4>
         <p>
           Designed and developed by{" "}
           <a href="https://tylermorales.pro" target="_blank" className="underline">
@@ -72,6 +73,24 @@ const About = ({ isAboutVisible }) => {
             target="_blank"
           >
             Design Team of One
+          </a>
+        </p>
+        <p className="mb-2">
+          Music by{" "}
+          <a
+            target="_blank"
+            className="underline"
+            href="https://pixabay.com/users/fassounds-3433550/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+          >
+            FASSounds
+          </a>{" "}
+          from{" "}
+          <a
+            target="_blank"
+            className="underline"
+            href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+          >
+            Pixabay
           </a>
         </p>
       </div>
