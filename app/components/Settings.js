@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useSoundManager from "../hooks/useSoundEffect";
+// import useSoundManager from "../hooks/useSoundEffect";
 import { useSoundContext } from "../contexts/SoundContext";
 
 const Settings = ({
@@ -11,9 +11,9 @@ const Settings = ({
   onStateChange,
   sharedState,
 }) => {
-  const { isMusicOn, toggleMusic, playSoundEffect } = useSoundManager();
-  const { isSoundOn, toggleSoundEffects } = useSoundContext();
-
+  // const { isMusicOn, toggleMusic, playSoundEffect } = useSoundManager();
+  const { toggleSoundEffects, toggleMusic, playSoundEffect, isSoundOn, isMusicOn } =
+    useSoundContext();
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const [isOpen, setIsOpen] = useState(false);
 
