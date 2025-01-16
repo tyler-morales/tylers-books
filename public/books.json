@@ -275,7 +275,7 @@
     "author": "Carl Sagan",
     "route": "brocas-brain.png",
     "year": 1979,
-    "dateFinished": null,
+    "dateFinished": "2019-01-16",
     "genre": "Science",
     "deweyDecimal": "612.82"
   },
@@ -285,7 +285,7 @@
     "author": "T.Z. Lavine",
     "route": "from-socrates-to-sartre.png",
     "year": 1984,
-    "dateFinished": null,
+    "dateFinished": "2019-01-16",
     "genre": "Philosophy",
     "deweyDecimal": "190"
   },
@@ -295,7 +295,7 @@
     "author": "Plato",
     "route": "great-dialogues-of-plato.png",
     "year": -400,
-    "dateFinished": null,
+    "dateFinished": "2019-01-16",
     "genre": "Philosophy",
     "deweyDecimal": "184"
   },
@@ -305,7 +305,7 @@
     "author": "Elizabeth Kolbert",
     "route": "the-sixth-extinction.png",
     "year": 2014,
-    "dateFinished": null,
+    "dateFinished": "2019-01-16",
     "genre": "Environmental Science",
     "deweyDecimal": "576.84"
   },
@@ -315,7 +315,7 @@
     "author": "Garfield",
     "route": "the-fundamental-wisdom-of-the-middle-way.png",
     "year": 1995,
-    "dateFinished": null,
+    "dateFinished": "2019-01-16",
     "genre": "Philosophy",
     "deweyDecimal": "294.3"
   }
