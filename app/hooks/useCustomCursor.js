@@ -27,7 +27,7 @@ export default function useCustomCursor() {
           cursor.style.transform = "translate(-10px, -20px)";
           break;
         case "fist":
-          cursor.style.backgroundImage = `url(${apiBasePath}images/assets/fist-cursor.png)`;
+          cursor.style.backgroundImage = `url(${apiBasePath}/images/assets/fist-cursor.png)`;
           cursor.style.transform = "translate(-10px, -20px) rotate(-45deg)";
           break;
         default:
