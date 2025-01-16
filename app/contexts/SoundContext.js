@@ -13,7 +13,7 @@ export const SoundProvider = ({ children }) => {
 
   // Sound Effects
   const [playClickSound] = useSound(`${apiBasePath}/sounds/mouse-click.mp3`, { volume: 0.5 });
-  const [playShuffleSound] = useSound(`${apiBasePath}/sounds/shuffle.mp3`, { volume: 0.6 });
+  const [playShuffleSound] = useSound(`${apiBasePath}/sounds/shuffle.mp3`, { volume: 0.9 });
   const [playDoorOpen] = useSound(`${apiBasePath}/sounds/door-open.mp3`, { volume: 0.5 });
   const [playDoorClose] = useSound(`${apiBasePath}/sounds/door-close.mp3`, { volume: 0.5 });
 
