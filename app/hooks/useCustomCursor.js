@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useCustomCursor() {
+  const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const [cursorType, setCursorType] = useState("default");
 
   useEffect(() => {
@@ -18,19 +19,19 @@ export default function useCustomCursor() {
     const updateCursorStyle = () => {
       switch (cursorType) {
         case "default":
-          cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
+          cursor.style.backgroundImage = `url(${apiBasePath}/images/assets/hand-cursor.png)`;
           cursor.style.transform = "translate(-16px, -5px)";
           break;
         case "pencil":
-          cursor.style.backgroundImage = "url(/images/assets/pencil-cursor.png)";
+          cursor.style.backgroundImage = `url(${apiBasePath}/images/assets/pencil-cursor.png)`;
           cursor.style.transform = "translate(-10px, -20px)";
           break;
         case "fist":
-          cursor.style.backgroundImage = "url(/images/assets/fist-cursor.png)";
+          cursor.style.backgroundImage = `url(${apiBasePath}images/assets/fist-cursor.png)`;
           cursor.style.transform = "translate(-10px, -20px) rotate(-45deg)";
           break;
         default:
-          cursor.style.backgroundImage = "url(/images/assets/hand-cursor.png)";
+          cursor.style.backgroundImage = `url(${apiBasePath}/images/assets/hand-cursor.png)`;
       }
     };
 
