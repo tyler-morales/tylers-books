@@ -188,5 +188,135 @@
     "dateFinished": "2019-01-15",
     "genre": "Philosophical fiction",
     "deweyDecimal": "833.912"
+  },
+  {
+    "id": "020",
+    "title": "The Old Man and the Sea",
+    "author": "Ernest Hemingway",
+    "route": "the-old-man-and-the-sea.png",
+    "year": 1952,
+    "dateFinished": "2019-01-15",
+    "genre": "Literary fiction",
+    "deweyDecimal": "813.52"
+  },
+  {
+    "id": "021",
+    "title": "Romeo and Juilet",
+    "author": "William Shakespeare",
+    "route": "romeo-and-juilet.png",
+    "year": 1597,
+    "dateFinished": "2019-01-15",
+    "genre": "Tragedy",
+    "deweyDecimal": "822.33"
+  },
+  {
+    "id": "022",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "route": "the-great-gatsby.png",
+    "year": 1925,
+    "dateFinished": "2019-01-15",
+    "genre": "Tragedy",
+    "deweyDecimal": "813.52"
+  },
+  {
+    "id": "023",
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "route": "war-and-peace.png",
+    "year": 1865,
+    "dateFinished": "2019-01-15",
+    "genre": "Novel",
+    "deweyDecimal": "891.73"
+  },
+  {
+    "id": "024",
+    "title": "Don Quixote",
+    "author": "Miguel de Cervantes",
+    "route": "don-quixote.png",
+    "year": 1605,
+    "dateFinished": "2019-01-15",
+    "genre": "Novel",
+    "deweyDecimal": "863.3"
+  },
+  {
+    "id": "025",
+    "title": "The Scarlet Letter",
+    "author": "Nathaniel Hawthorne",
+    "route": "the-scarlet-letter.png",
+    "year": 1850,
+    "dateFinished": "2019-01-15",
+    "genre": "Romantic",
+    "deweyDecimal": "813.3"
+  },
+  {
+    "id": "026",
+    "title": "Hamlet",
+    "author": "William Shakespeare",
+    "route": "Hamlet.png",
+    "year": 1599,
+    "dateFinished": "2019-01-15",
+    "genre": "Tragedy",
+    "deweyDecimal": "822.33"
+  },
+  {
+    "id": "027",
+    "title": "A Christmas Carol",
+    "author": "Charles Dickens",
+    "route": "a-christmas-carol.png",
+    "year": 1843,
+    "dateFinished": "2019-01-16",
+    "genre": "Novella",
+    "deweyDecimal": "823.8"
+  },
+  {
+    "id": "028",
+    "title": "Broca's Brain",
+    "author": "Carl Sagan",
+    "route": "brocas-brain.png",
+    "year": 1979,
+    "dateFinished": "2019-01-16",
+    "genre": "Science",
+    "deweyDecimal": "612.82"
+  },
+  {
+    "id": "029",
+    "title": "From Socrates to Sartre",
+    "author": "T.Z. Lavine",
+    "route": "from-socrates-to-sartre.png",
+    "year": 1984,
+    "dateFinished": "2019-01-16",
+    "genre": "Philosophy",
+    "deweyDecimal": "190"
+  },
+  {
+    "id": "030",
+    "title": "Great Dialogues of Plato",
+    "author": "Plato",
+    "route": "great-dialogues-of-plato.png",
+    "year": -400,
+    "dateFinished": "2019-01-16",
+    "genre": "Philosophy",
+    "deweyDecimal": "184"
+  },
+  {
+    "id": "031",
+    "title": "The Sixth Extinction",
+    "author": "Elizabeth Kolbert",
+    "route": "the-sixth-extinction.png",
+    "year": 2014,
+    "dateFinished": "2019-01-16",
+    "genre": "Environmental Science",
+    "deweyDecimal": "576.84"
+  },
+  {
+    "id": "032",
+    "title": "The Fundamental Wisdom of the Middle Way",
+    "author": "Garfield",
+    "route": "the-fundamental-wisdom-of-the-middle-way.png",
+    "year": 1995,
+    "dateFinished": "2019-01-16",
+    "genre": "Philosophy",
+    "deweyDecimal": "294.3"
   }
 ]
