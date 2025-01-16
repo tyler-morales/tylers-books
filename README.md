@@ -26,9 +26,12 @@ bun dev
 - [x] Bug: mobile responsiveness
 - [ ] Bug: about section does not transition smoothly
 - [x] Improvement: scroll books on grab and pull
-- [ ] Feature: add audio/ sound effects
-  - [ ] Soothing background music
-  - [ ] sound effects on:
-    - [ ] books moving (shuffling)
-    - [ ] buttons clicked
-    - [ ] ui buttons to display the two buttons (on and off switch for each)
+- [x] Feature: add audio/ sound effects
+  - [x] Soothing background music
+  - [x] sound effects on:
+    - [x] books moving (shuffling)
+    - [x] buttons clicked
+    - [x] ui buttons to display the two buttons (on and off switch for each)
+- [ ] Update: fix modal
+  - [ ] make a reusable modal component
+  - [ ] update about section with new modal
