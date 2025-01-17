@@ -75,29 +75,29 @@ const About = () => {
             Design Team of One
           </a>
         </p>
-        <p className="mb-2">
+        <p>
           SFX by{" "}
           <a target="_blank" className="underline" href="https://soundcloud.com/audrys-kelecius">
             Audrys Kelecius
           </a>
-          <p className="mb-2">
-            Music by{" "}
-            <a
-              target="_blank"
-              className="underline"
-              href="https://pixabay.com/users/fassounds-3433550/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
-            >
-              FASSounds
-            </a>{" "}
-            from{" "}
-            <a
-              target="_blank"
-              className="underline"
-              href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
-            >
-              Pixabay
-            </a>
-          </p>
+        </p>
+        <p>
+          Music by{" "}
+          <a
+            target="_blank"
+            className="underline"
+            href="https://pixabay.com/users/fassounds-3433550/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+          >
+            FASSounds
+          </a>{" "}
+          from{" "}
+          <a
+            target="_blank"
+            className="underline"
+            href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+          >
+            Pixabay
+          </a>
         </p>
       </div>
     </section>
