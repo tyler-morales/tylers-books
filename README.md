@@ -32,6 +32,4 @@ bun dev
     - [x] books moving (shuffling)
     - [x] buttons clicked
     - [x] ui buttons to display the two buttons (on and off switch for each)
-- [ ] Update: fix modal
-  - [ ] make a reusable modal component
-  - [ ] update about section with new modal
+- [x] Update: fix modal
