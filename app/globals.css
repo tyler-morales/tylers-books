@@ -11,9 +11,10 @@ html {
   scroll-behavior: smooth;
   overflow: hidden; /* prevent screen from moving due to custom cursor */
 }
+
 *,
 button {
-  cursor: none; /* Remove default cursor types */
+  cursor: none;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,9 +47,6 @@ body {
 .raised {
   box-shadow: rgb(19, 0, 0) 0px 0px 6px 1px;
   background-color: rgba(15, 1, 1, 0.25);
-  /* NEED TO FIX THIS ⬇️ ⬇️ */
-  /* background-image: url(/images/wood.jpg); */
-  /* background-image: url(process.env.NEXT_PUBLIC_API_BASE_PATH//images/wood.jpg); */
 }
 
 #about-popover {
@@ -57,12 +55,10 @@ body {
     /* Controls movement (if using translate) */ display 0.5s ease-out allow-discrete,
     /* Handles show/hide visibility */ overlay 0.5s ease-out allow-discrete,
     /* Manages how the popover appears in the top layer */ opacity 0.5s ease-in-out; /* Handles fade-in and fade-out effect */
-
   /* Initial popover state (hidden) */
   opacity: 0; /* Starts fully transparent */
   translate: 0 0; /* Prevents unwanted movement initially */
   translate: 0 400px; /* Uncomment for a slide-in effect */
-
   /* Backdrop styling */
   &::backdrop {
     opacity: 0; /* Backdrop starts fully transparent */
@@ -91,4 +87,9 @@ body {
       }
     }
   }
+}
+
+#about-popover,
+#about-popover * {
+  cursor: auto !important;
 }
