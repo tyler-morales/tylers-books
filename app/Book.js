@@ -82,15 +82,16 @@ export default function Book({
 
     return className;
   }
+  const [randomY] = useState(() => Math.floor(Math.random() * 500) + 500);
+  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.55); // Random between 0.5 and 1.2
 
   return (
     <motion.li
+      initial={{ y: -randomY }} // Start at a random height
       animate={{
-        y: 0,
-        opacity: 1,
+        y: [-randomY, 0, -30, 0],
         transition: {
-          default: { type: "spring" },
-          opacity: { ease: "linear" },
+          y: { type: "tween", mass: 3, duration: randomBounce * 1.3 },
         },
       }}
       layout
