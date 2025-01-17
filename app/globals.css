@@ -93,3 +93,11 @@ body {
 #about-popover * {
   cursor: auto !important;
 }
+
+.leather-stitch {
+  border: 1px dashed hsla(44, 84%, 36%, 0.8);
+}
+
+.leather {
+  background: url(https://i.imgur.com/IMjKmwu.jpg) #6b3a0d;
+}
