@@ -161,10 +161,10 @@ export default function Book({
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
             style={{ filter: `hue-rotate(${randomHue}deg)` }}
-            className="leather shadow-2xl  absolute top-2 left-2 p-2 z-10 rounded-md min-w-max"
+            className="leather shadow-2xl absolute top-2 left-2 p-2 z-10 rounded-lg min-w-max"
           >
             <div
-              className="leather-stitch p-2"
+              className="leather-stitch p-2 rounded-md"
               onMouseEnter={(e) => handleMouseEnter(e)}
               onMouseLeave={handleMouseLeave}
             >
