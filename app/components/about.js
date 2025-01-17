@@ -52,6 +52,7 @@ const About = () => {
           Please Let me know your thougts and if you have ideas for improvements or features!
         </p>
       </div>
+
       <div className="text-sm mt-4">
         <h4 className="italic">Credits</h4>
         <p>
@@ -75,22 +76,28 @@ const About = () => {
           </a>
         </p>
         <p className="mb-2">
-          Music by{" "}
-          <a
-            target="_blank"
-            className="underline"
-            href="https://pixabay.com/users/fassounds-3433550/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
-          >
-            FASSounds
-          </a>{" "}
-          from{" "}
-          <a
-            target="_blank"
-            className="underline"
-            href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
-          >
-            Pixabay
+          SFX by{" "}
+          <a target="_blank" className="underline" href="https://soundcloud.com/audrys-kelecius">
+            Audrys Kelecius
           </a>
+          <p className="mb-2">
+            Music by{" "}
+            <a
+              target="_blank"
+              className="underline"
+              href="https://pixabay.com/users/fassounds-3433550/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+            >
+              FASSounds
+            </a>{" "}
+            from{" "}
+            <a
+              target="_blank"
+              className="underline"
+              href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=112191"
+            >
+              Pixabay
+            </a>
+          </p>
         </p>
       </div>
     </section>
