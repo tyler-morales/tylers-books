@@ -7,7 +7,6 @@ const Settings = ({
   books,
   sortOrder,
   handleShuffleBooks,
-  onStateChange,
   sharedState,
 }) => {
   const { toggleSoundEffects, toggleMusic, playSoundEffect, isSoundOn, isMusicOn } =
@@ -17,7 +16,6 @@ const Settings = ({
 
   const handleModal = () => {
     playSoundEffect();
-    onStateChange(!sharedState); // Send the new value to the parent
   };
 
   // Sort books based on criteria
@@ -115,8 +113,8 @@ const Settings = ({
               {isOpen ? "Close sort menu" : "Sort"}
             </span>
           </button>
-
           <button
+            popoverTarget="about-popover"
             style={{
               backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
             }}
@@ -130,7 +128,9 @@ const Settings = ({
         </div>
         <div className="flex gap-2">
           <button
-            // onClick={handleSoundEffects}
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={toggleSoundEffects}
             className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >
@@ -139,6 +139,9 @@ const Settings = ({
             </span>
           </button>
           <button
+            style={{
+              backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
+            }}
             onClick={toggleMusic}
             className="raised transition-all px-2 py-1 w-max rounded-lg border-b-4 border-orange-950 hover:border-b-2 border-x-2 active:border-b-[1px]"
           >

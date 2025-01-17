@@ -1,16 +1,16 @@
 import React from "react";
 
-const About = ({ isAboutVisible }) => {
+const About = () => {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
 
   return (
     <section
+      popover="auto"
+      id="about-popover"
       style={{
         backgroundImage: `url(${apiBasePath}/images/old-wall.png)`,
       }}
-      className={`h-[550px] sm:h-auto overflow-y-scroll transition-all text-black max-w-md text-justify p-4 m-6 relative shadow-xl bg-orange-200 rounded-lg border-2 border-orange-300 scroll-hidden z-50 ${
-        isAboutVisible ? "visible opacity-100 translate-y-0" : "hidden opacity-0 translate-y-6"
-      }`}
+      className="transition-all max-w-prose mx-4 sm:m-auto text-justify shadow-xl p-4 text-black bg-orange-200 rounded-lg border-2 border-orange-300 scroll-hidden"
     >
       <div>
         <hr className="h-[2px] bg-orange-950 border-0 mb-2" />
@@ -52,7 +52,6 @@ const About = ({ isAboutVisible }) => {
           Please Let me know your thougts and if you have ideas for improvements or features!
         </p>
       </div>
-
       <div className="text-sm mt-4">
         <h4 className="italic">Credits</h4>
         <p>

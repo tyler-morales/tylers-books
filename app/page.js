@@ -23,7 +23,6 @@ export default function Home() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [hoveredBook, setHoveredBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAboutVisible, setIsAboutVisible] = useState(false);
   // Create state that sets bookSizeMultiplier to 5 when on small screens and 4 to larger screens
   const [bookSizeMultiplier, setBookSizeMultiplier] = useState(4);
 
@@ -111,10 +110,6 @@ export default function Home() {
     setSearchQuery(event.target.value);
   };
 
-  const handleStateChange = () => {
-    setIsAboutVisible(!isAboutVisible);
-  };
-
   useEffect(() => {
     const ele = dragableRef.current;
     ele.style.cursor = "grab";
@@ -140,10 +135,8 @@ export default function Home() {
     const mouseMoveHandler = function (e) {
       // How far the mouse has been moved
       const dx = e.clientX - pos.x;
-      // const dy = e.clientY - pos.y;
 
       // Scroll the element
-      // ele.scrollTop = pos.top - dy;
       ele.scrollLeft = pos.left - dx;
     };
 
@@ -220,12 +213,10 @@ export default function Home() {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
           handleShuffleBooks={handleShuffleBooks}
-          onStateChange={handleStateChange}
-          sharedState={isAboutVisible}
         />
       </div>
 
-      <About isAboutVisible={isAboutVisible} />
+      <About />
     </>
   );
 }
