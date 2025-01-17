@@ -3,7 +3,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useDragDetection from "./hooks/useDragDetection";
 
 export default function Book({
@@ -17,7 +17,7 @@ export default function Book({
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { title, author, route, year, genre, deweyDecimal } = data;
   const { handleMouseDown, handleMouseMove, handleMouseUp } = useDragDetection();
-
+  const [randomHue] = useState(() => Math.floor(Math.random() * 360));
   const [isHovered, setIsHovered] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 1000 });
   const originalSize = useRef({ width: 0, height: 1000 }); // Store original size
@@ -83,10 +83,6 @@ export default function Book({
     return className;
   }
 
-  const handleBookClick = (e, data) => {
-    e.preventDefault();
-    onSelect(data);
-  };
   return (
     <motion.li
       animate={{
@@ -159,15 +155,47 @@ export default function Book({
         </div>
       )}
       {isHovered && !isSelected && (
-        <div
-          className="absolute top-0 left-0 bg-white p-2 text-black z-10 rounded-md shadow-md ml-2 mt-2 min-w-max"
-          onMouseEnter={(e) => handleMouseEnter(e)}
-          onMouseLeave={handleMouseLeave}
-        >
-          <h3 className="text-lg font-bold">{title}</h3>
-          <span className="text-md italic">by {author}</span>
-          <span className="block">{year}</span>
-        </div>
+        <AnimatePresence>
+          <motion.div
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -20, opacity: 0 }}
+            style={{ filter: `hue-rotate(${randomHue}deg)` }}
+            className="leather shadow-2xl absolute top-2 left-2 p-2 z-10 rounded-lg min-w-max"
+          >
+            <div
+              className="leather-stitch p-2 rounded-md"
+              onMouseEnter={(e) => handleMouseEnter(e)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <h3 className="text-lg font-bold">{title}</h3>
+              <span className="text-md italic">by {author}</span>
+              <span className="block">{year}</span>
+            </div>
+          </motion.div>
+          {/* <motion.div
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                default: { type: "spring" },
+                opacity: { ease: "linear" },
+              },
+            }}
+            style={{ filter: `hue-rotate(${randomHue}deg)` }}
+            className="leather shadow-2xl  absolute top-2 left-2 p-2 z-10 rounded-md min-w-max"
+          >
+            <div
+              className="leather-stitch p-2"
+              onMouseEnter={(e) => handleMouseEnter(e)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <h3 className="text-lg font-bold">{title}</h3>
+              <span className="text-md italic">by {author}</span>
+              <span className="block">{year}</span>
+            </div>
+          </motion.div> */}
+        </AnimatePresence>
       )}
     </motion.li>
   );
