@@ -17,7 +17,7 @@ const About = () => {
         <hr className="h-[4px] bg-orange-950 border-0 mb-2" />
 
         <h3 className="text-2xl uppercase font-serif font-black text-center">Tyler&apos;s Books</h3>
-        <h4 className="uppercase font-black text-sm  font-serif">
+        <h4 className="uppercase font-black text-sm text-center font-serif">
           A collection of books I own on my bookshelf
         </h4>
 
