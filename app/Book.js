@@ -83,7 +83,7 @@ export default function Book({
     return className;
   }
   const [randomY] = useState(() => Math.floor(Math.random() * 500) + 500);
-  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.55); // Random between 0.5 and 1.2
+  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.75); // Random between 0.5 and 1.2
 
   return (
     <motion.li
