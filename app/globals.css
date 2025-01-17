@@ -47,5 +47,48 @@ body {
   box-shadow: rgb(19, 0, 0) 0px 0px 6px 1px;
   background-color: rgba(15, 1, 1, 0.25);
   /* NEED TO FIX THIS ⬇️ ⬇️ */
-  background-image: url(/images/wood.jpg);
+  /* background-image: url(/images/wood.jpg); */
+  /* background-image: url(process.env.NEXT_PUBLIC_API_BASE_PATH//images/wood.jpg); */
+}
+
+#about-popover {
+  /* Popover transition settings */
+  transition: translate 0.5s ease-out,
+    /* Controls movement (if using translate) */ display 0.5s ease-out allow-discrete,
+    /* Handles show/hide visibility */ overlay 0.5s ease-out allow-discrete,
+    /* Manages how the popover appears in the top layer */ opacity 0.5s ease-in-out; /* Handles fade-in and fade-out effect */
+
+  /* Initial popover state (hidden) */
+  opacity: 0; /* Starts fully transparent */
+  translate: 0 0; /* Prevents unwanted movement initially */
+  translate: 0 400px; /* Uncomment for a slide-in effect */
+
+  /* Backdrop styling */
+  &::backdrop {
+    opacity: 0; /* Backdrop starts fully transparent */
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
+    transition: opacity 0.5s; /* Smooth fade-in/out for backdrop */
+    display: hidden; /* Ensures backdrop is not visible initially */
+  }
+
+  /* When popover is open */
+  &:popover-open {
+    translate: 0 0; /* Ensures popover is positioned correctly */
+    opacity: 1; /* Makes popover fully visible */
+    transition-timing-function: ease-in-out; /* Smooths the transition */
+
+    /* Backdrop behavior when popover is open */
+    &::backdrop {
+      opacity: 1; /* Makes the backdrop fully visible */
+    }
+
+    /* Initial animation state before transition */
+    @starting-style {
+      translate: 0 400px; /* Popover starts lower and animates upwards */
+      opacity: 0;
+      &::backdrop {
+        opacity: 0; /* Ensures backdrop fades in smoothly */
+      }
+    }
+  }
 }
