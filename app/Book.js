@@ -82,15 +82,16 @@ export default function Book({
 
     return className;
   }
+  const [randomY] = useState(() => Math.floor(Math.random() * 500) + 500);
+  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.75); // Random between 0.5 and 1.2
 
   return (
     <motion.li
+      initial={{ y: -randomY }} // Start at a random height
       animate={{
-        y: 0,
-        opacity: 1,
+        y: [-randomY, 0, -30, 0],
         transition: {
-          default: { type: "spring" },
-          opacity: { ease: "linear" },
+          y: { type: "tween", mass: 3, duration: randomBounce * 1.3 },
         },
       }}
       layout
@@ -157,9 +158,10 @@ export default function Book({
       {isHovered && !isSelected && (
         <AnimatePresence>
           <motion.div
-            initial={{ x: 20, opacity: 0 }}
+            initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -20, opacity: 0 }}
+            exit={{ x: -50, opacity: 0 }}
+            layout
             style={{ filter: `hue-rotate(${randomHue}deg)` }}
             className="leather shadow-2xl absolute top-2 left-2 p-2 z-10 rounded-lg min-w-max"
           >

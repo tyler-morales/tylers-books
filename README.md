@@ -18,7 +18,7 @@ bun dev
 
 - [x] Style: Restyle hover book snippet info
 - [x] UX: Remove hover info on the selected book
-- [ ] Animation: books should drop in from top of screen and land on bookshelf
+- [x] Animation: books should drop in from top of screen and land on bookshelf
 - [x] Feature: Implement scroll on shelf image to move the book case up and show the about page
 - [ ] Bug: animation when book is selected is weird
 - [ ] Feature: catalog card flip onClick
@@ -32,6 +32,4 @@ bun dev
     - [x] books moving (shuffling)
     - [x] buttons clicked
     - [x] ui buttons to display the two buttons (on and off switch for each)
-- [ ] Update: fix modal
-  - [ ] make a reusable modal component
-  - [ ] update about section with new modal
+- [x] Update: fix modal

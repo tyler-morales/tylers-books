@@ -17,7 +17,7 @@ const About = () => {
         <hr className="h-[4px] bg-orange-950 border-0 mb-2" />
 
         <h3 className="text-2xl uppercase font-serif font-black text-center">Tyler&apos;s Books</h3>
-        <h4 className="uppercase font-black text-sm  font-serif">
+        <h4 className="uppercase font-black text-sm text-center font-serif">
           A collection of books I own on my bookshelf
         </h4>
 
@@ -52,6 +52,7 @@ const About = () => {
           Please Let me know your thougts and if you have ideas for improvements or features!
         </p>
       </div>
+
       <div className="text-sm mt-4">
         <h4 className="italic">Credits</h4>
         <p>
@@ -74,7 +75,13 @@ const About = () => {
             Design Team of One
           </a>
         </p>
-        <p className="mb-2">
+        <p>
+          SFX by{" "}
+          <a target="_blank" className="underline" href="https://soundcloud.com/audrys-kelecius">
+            Audrys Kelecius
+          </a>
+        </p>
+        <p>
           Music by{" "}
           <a
             target="_blank"
