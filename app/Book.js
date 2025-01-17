@@ -157,9 +157,10 @@ export default function Book({
       {isHovered && !isSelected && (
         <AnimatePresence>
           <motion.div
-            initial={{ x: 20, opacity: 0 }}
+            initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -20, opacity: 0 }}
+            exit={{ x: -50, opacity: 0 }}
+            layout
             style={{ filter: `hue-rotate(${randomHue}deg)` }}
             className="leather shadow-2xl absolute top-2 left-2 p-2 z-10 rounded-lg min-w-max"
           >
