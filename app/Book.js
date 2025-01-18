@@ -86,6 +86,7 @@ export default function Book({
   const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.5); // Random between 0.5 and 1.5
   return (
     <motion.li
+      key={data.id}
       initial={{ y: -randomY }}
       animate={{
         y: [-100, 5, -10, 0], // Drop, impact, slight bounce, settle
