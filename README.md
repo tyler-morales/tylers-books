@@ -20,11 +20,11 @@ bun dev
 - [x] UX: Remove hover info on the selected book
 - [x] Animation: books should drop in from top of screen and land on bookshelf
 - [x] Feature: Implement scroll on shelf image to move the book case up and show the about page
-- [ ] Bug: animation when book is selected is weird
+- [x] Bug: animation when book is selected is weird
 - [ ] Feature: catalog card flip onClick
 - [ ] Feature: mobile friendly- stack books vertically
 - [x] Bug: mobile responsiveness
-- [ ] Bug: about section does not transition smoothly
+- [x] Bug: about section does not transition smoothly
 - [x] Improvement: scroll books on grab and pull
 - [x] Feature: add audio/ sound effects
   - [x] Soothing background music
