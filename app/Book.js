@@ -83,18 +83,21 @@ export default function Book({
     return className;
   }
   const [randomY] = useState(() => Math.floor(Math.random() * 500) + 500);
-  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.75); // Random between 0.5 and 1.2
-
+  const [randomBounce] = useState(() => Math.random() * (1.2 - 0.5) + 0.5); // Random between 0.5 and 1.5
   return (
     <motion.li
-      initial={{ y: -randomY }} // Start at a random height
+      initial={{ y: -randomY }}
       animate={{
-        y: [-randomY, 0, -30, 0],
+        y: [-100, 5, -10, 0], // Drop, impact, slight bounce, settle
         transition: {
-          y: { type: "tween", mass: 3, duration: randomBounce * 1.3 },
+          y: {
+            type: "tween",
+            duration: randomBounce * 1.2, // Slightly longer for realism
+            ease: ["easeIn", "backOut"], // Organic bounce easing
+          },
         },
       }}
-      layout
+      // layout
       className="relative flex items-end gap-2"
     >
       <button
@@ -126,7 +129,13 @@ export default function Book({
       </button>
       {isSelected && (
         // Catalog Card
-        <div className="flex flex-col relative">
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -50, opacity: 0 }}
+          layout
+          className="flex flex-col relative"
+        >
           <div
             className="rounded-l-md rounded-md z-50 shadow-xl w-[300px] h-[200px] mr-1 bg-cover"
             style={{
@@ -153,7 +162,7 @@ export default function Book({
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
       {isHovered && !isSelected && (
         <AnimatePresence>
