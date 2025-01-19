@@ -7,6 +7,7 @@ import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
 import { useSoundContext } from "./contexts/SoundContext";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
@@ -186,17 +187,19 @@ export default function Home() {
         className="max-h-[750px] w-screen m-0 p-0 bottom-[51px] absolute scroll-hidden"
       >
         <ul className="flex w-max items-baseline min-w-[100vw] px-4">
-          {filteredBooks.map((book, index) => (
-            <Book
-              key={book.id}
-              data={book}
-              isSelected={selectedBook === book}
-              onSelect={handleSelectBook}
-              isAnyHovered={hoveredBook !== null}
-              onHover={setHoveredBook}
-              bookSizeMultiplier={bookSizeMultiplier}
-            />
-          ))}
+          <AnimatePresence mode="popLayout">
+            {filteredBooks.map((book, index) => (
+              <Book
+                key={book.id}
+                data={book}
+                isSelected={selectedBook === book}
+                onSelect={handleSelectBook}
+                isAnyHovered={hoveredBook !== null}
+                onHover={setHoveredBook}
+                bookSizeMultiplier={bookSizeMultiplier}
+              />
+            ))}
+          </AnimatePresence>
         </ul>
       </section>
 
