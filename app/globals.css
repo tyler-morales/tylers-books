@@ -94,6 +94,13 @@ body {
   cursor: auto !important;
 }
 
+#about-popover > div > p > a {
+  cursor: pointer !important;
+}
+#about-popover > div > button > * {
+  cursor: pointer !important;
+}
+
 .leather-stitch {
   border: 1px dashed hsla(44, 84%, 36%, 0.8);
 }
