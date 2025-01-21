@@ -8,6 +8,7 @@ import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
 import { useSoundContext } from "./contexts/SoundContext";
 import { AnimatePresence, motion } from "framer-motion";
+import Matchbox from "./components/Matchbox";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
@@ -188,6 +189,7 @@ export default function Home() {
       >
         <ul className="flex w-max items-baseline min-w-[100vw] px-4">
           <AnimatePresence mode="popLayout">
+            <Matchbox />
             {filteredBooks.map((book, index) => (
               <Book
                 key={book.id}
