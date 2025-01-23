@@ -7,13 +7,16 @@ import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
 import { useSoundContext } from "./contexts/SoundContext";
+import { useBackground } from "./contexts/BackgroundContext";
 import { AnimatePresence, motion } from "framer-motion";
+import Matchbox from "./components/Matchbox";
 
 export default function Home() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { setCursorType } = useCustomCursor(); // Access the hook
   const { toggleSoundEffects, toggleMusic, playSoundEffect, isSoundOn, isMusicOn } =
     useSoundContext();
+  const { isCandleLit } = useBackground();
 
   const containerRef = useRef(null);
   const dragableRef = useRef(null);
@@ -158,8 +161,16 @@ export default function Home() {
     };
   }, []);
 
+  console.log(isCandleLit);
+
   return (
-    <>
+    <main
+      className={`h-screen transition-all duration-500 ${
+        isCandleLit
+          ? "bg-gradient-to-t from-yellow-200 to-white"
+          : "bg-gradient-to-t from-slate-900"
+      }`}
+    >
       <nav
         style={{
           backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
@@ -188,6 +199,7 @@ export default function Home() {
       >
         <ul className="flex w-max items-baseline min-w-[100vw] px-4">
           <AnimatePresence mode="popLayout">
+            <Matchbox />
             {filteredBooks.map((book, index) => (
               <Book
                 key={book.id}
@@ -220,6 +232,6 @@ export default function Home() {
       </div>
 
       <About />
-    </>
+    </main>
   );
 }
