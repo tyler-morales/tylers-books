@@ -116,7 +116,7 @@ export default function Matchbox() {
         setMatchState((prev) => ({ ...prev, isIgnited: false })); // Remove flame
         setIsCandleLit(false); // ✅ Reset background
         resetMatchbox();
-      }, 10000);
+      }, 14000);
     }, 800);
   };
 

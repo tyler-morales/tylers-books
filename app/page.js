@@ -165,7 +165,7 @@ export default function Home() {
 
   return (
     <main
-      className={`h-screen transition-all duration-1000 ${
+      className={`h-screen transition-all duration-500 ${
         isCandleLit
           ? "bg-gradient-to-t from-yellow-200 to-white"
           : "bg-gradient-to-t from-slate-900"
