@@ -52,8 +52,8 @@ export default function Matchbox() {
       setMatchState((prev) => ({
         ...prev,
         step: "flint",
-        matchPosition: { x: 50, y: 20 }, // Move match to a new position
-        matchRotation: -135, // Rotate match before striking
+        matchPosition: { x: 50, y: 20 }, // Move match to flit
+        matchRotation: -135,
       }));
     } else if (matchState.step === "flint") {
       igniteMatch(); // Proceed to igniting match & showing candle
@@ -97,8 +97,19 @@ export default function Matchbox() {
         isCandleLit: true,
         matchRotation: -200,
       }));
-      console.log("light candle");
     }, 800);
+  };
+
+  // 📌 Step 5: Reset matchbox
+  const resetMatchbox = () => {
+    setMatchState({
+      step: "side",
+      matchPosition: { x: 70, y: 50 },
+      matchRotation: 0,
+      showMatch: false,
+      isIgnited: false,
+      isCandleLit: false,
+    });
   };
 
   // 📌 Extract the correct image based on the current step
@@ -112,17 +123,18 @@ export default function Matchbox() {
         onClick={handleMatchboxClick}
         initial={{ y: -500 }}
         animate={{
-          y: [-100, 5, -10, 0], // Drop effect
-          transition: { y: { type: "tween", duration: 1.2, ease: ["easeIn", "backOut"] } },
+          opacity: [-50, 0, 1],
+          y: [-3, 0], // Drop effect
+          transition: { y: { type: "tween", duration: 0.8, ease: ["easeIn", "backOut"] } },
         }}
       >
         {/* 🕯️ Candle (Appears after match ignites) */}
         {matchState.showCandle && (
           <motion.div
             className="absolute left-1/3 bottom-0"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: -100, scale: 0.8 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: -80 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Candle Image */}
             <Image
@@ -159,7 +171,9 @@ export default function Matchbox() {
         {/* 🔥 Match */}
         {matchState.showMatch && (
           <motion.div
-            className="absolute transition-all cursor-pointer z-50"
+            className={`absolute transition-all cursor-pointer z-50 ${
+              matchState.step === "open" && "animate-wiggle"
+            }`}
             style={{
               bottom: `${matchState.matchPosition.y}px`,
               left: `${matchState.matchPosition.x}px`,
@@ -199,20 +213,15 @@ export default function Matchbox() {
         )}
 
         {/* 🏠 Matchbox */}
-        <motion.div
-          className="z-[2] relative"
-          initial={{ scale: 0.7 }}
-          animate={{ scale: [0.5, 1] }} // 📌 Subtle squish effect on click
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
+        <motion.div className="z-[2] relative">
           <Image
+            onClick={resetMatchbox}
             alt="Matchbox"
             width={size.width}
             height={size.height}
             src={`${apiBasePath}/images/assets/matches/${route}`}
             unoptimized
             style={{ boxShadow: "5px 3px 5px black" }}
-            onDragStart={(e) => e.preventDefault()}
           />
         </motion.div>
       </motion.div>
