@@ -7,6 +7,7 @@ import Plaque from "./components/Plaque";
 import Settings from "./components/Settings";
 import useCustomCursor from "./hooks/useCustomCursor";
 import { useSoundContext } from "./contexts/SoundContext";
+import { useBackground } from "./contexts/BackgroundContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Matchbox from "./components/Matchbox";
 
@@ -15,6 +16,7 @@ export default function Home() {
   const { setCursorType } = useCustomCursor(); // Access the hook
   const { toggleSoundEffects, toggleMusic, playSoundEffect, isSoundOn, isMusicOn } =
     useSoundContext();
+  const { isCandleLit } = useBackground();
 
   const containerRef = useRef(null);
   const dragableRef = useRef(null);
@@ -159,8 +161,16 @@ export default function Home() {
     };
   }, []);
 
+  console.log(isCandleLit);
+
   return (
-    <>
+    <main
+      className={`h-screen transition-all duration-1000 ${
+        isCandleLit
+          ? "bg-gradient-to-t from-yellow-200 to-white"
+          : "bg-gradient-to-t from-slate-900"
+      }`}
+    >
       <nav
         style={{
           backgroundImage: `url(${apiBasePath}/images/wood.jpg)`,
@@ -222,6 +232,6 @@ export default function Home() {
       </div>
 
       <About />
-    </>
+    </main>
   );
 }

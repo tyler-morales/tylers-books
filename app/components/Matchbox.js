@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { useBackground } from "../contexts/BackgroundContext";
 import { useState } from "react";
 import { useSoundContext } from "../contexts/SoundContext";
 
 export default function Matchbox() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
   const { playSoundEffect } = useSoundContext();
+  const { setIsCandleLit } = useBackground(); // ✅ Access function to change background
 
   // 📌 State Management
   const [matchState, setMatchState] = useState({
@@ -105,11 +107,20 @@ export default function Matchbox() {
         isCandleLit: true,
         matchRotation: -200,
       }));
+      setIsCandleLit(true);
+
+      // ⏳ Automatically extinguish flame after 10 seconds
+      setTimeout(() => {
+        setMatchState((prev) => ({ ...prev, isIgnited: false })); // Remove flame
+        setIsCandleLit(false); // ✅ Reset background
+        resetMatchbox();
+      }, 10000);
     }, 800);
   };
 
   // 📌 Step 5: Reset matchbox
   const resetMatchbox = () => {
+    setIsCandleLit(false);
     setMatchState({
       step: "side",
       matchPosition: { x: 70, y: 50 },
