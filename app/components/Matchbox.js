@@ -22,7 +22,7 @@ export default function Matchbox() {
         alt="Matchboox"
         width="40"
         height="200"
-        src={`${apiBasePath}/images/assets/matchbox.png`}
+        src={`${apiBasePath}/images/assets/matches/side.png`}
         unoptimized={true}
         style={{ boxShadow: "5px 3px 5px black" }}
         onDragStart={(e) => e.preventDefault()} // Prevent ghost image
