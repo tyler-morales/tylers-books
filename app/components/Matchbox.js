@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { useSoundContext } from "../contexts/SoundContext";
 
 export default function Matchbox() {
   const apiBasePath = process.env.NEXT_PUBLIC_API_BASE_PATH || "";
+  const { playSoundEffect } = useSoundContext();
 
   // 📌 State Management
   const [matchState, setMatchState] = useState({
@@ -30,9 +32,11 @@ export default function Matchbox() {
   const handleMatchboxClick = () => {
     switch (matchState.step) {
       case "side":
+        playSoundEffect("pop");
         setMatchState((prev) => ({ ...prev, step: "closed" }));
         break;
       case "closed":
+        playSoundEffect("door-open");
         setMatchState((prev) => ({
           ...prev,
           step: "open",
@@ -49,6 +53,7 @@ export default function Matchbox() {
     e.stopPropagation(); // Prevents matchbox click from triggering
 
     if (matchState.step === "open") {
+      playSoundEffect("slam");
       setMatchState((prev) => ({
         ...prev,
         step: "flint",
@@ -67,12 +72,14 @@ export default function Matchbox() {
       isIgnited: true, // Show flame
       matchPosition: { x: 185, y: 5 }, // Move match right to strike flint
     }));
+    playSoundEffect("strike");
 
     setTimeout(() => {
       setMatchState((prev) => ({
         ...prev,
         showCandle: true, // Candle appears after match is lit
       }));
+      playSoundEffect("slide");
     }, 1000);
   };
 
@@ -92,6 +99,7 @@ export default function Matchbox() {
 
     // light the candle after 1.5s
     setTimeout(() => {
+      playSoundEffect("flicker");
       setMatchState((prev) => ({
         ...prev,
         isCandleLit: true,
@@ -121,9 +129,10 @@ export default function Matchbox() {
         key={matchState.step}
         className="relative"
         onClick={handleMatchboxClick}
-        initial={{ y: -500 }}
+        initial={{ y: -500, scale: 0.9 }}
         animate={{
           opacity: [-50, 0, 1],
+          scale: 1,
           y: [-3, 0], // Drop effect
           transition: { y: { type: "tween", duration: 0.8, ease: ["easeIn", "backOut"] } },
         }}

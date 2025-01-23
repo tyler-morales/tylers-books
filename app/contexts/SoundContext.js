@@ -16,6 +16,11 @@ export const SoundProvider = ({ children }) => {
   const [playShuffleSound] = useSound(`${apiBasePath}/sounds/chimes.wav`, { volume: 0.9 });
   const [playDoorOpen] = useSound(`${apiBasePath}/sounds/door-open.mp3`, { volume: 0.5 });
   const [playDoorClose] = useSound(`${apiBasePath}/sounds/door-close.mp3`, { volume: 0.5 });
+  const [playFlintStrike] = useSound(`${apiBasePath}/sounds/lighter-strike.mp3`, { volume: 0.5 });
+  const [playPop] = useSound(`${apiBasePath}/sounds/pop.mp3`, { volume: 0.5 });
+  const [playSlam] = useSound(`${apiBasePath}/sounds/door-slam.mp3`, { volume: 0.5 });
+  const [playFlicker] = useSound(`${apiBasePath}/sounds/flicker.mp3`, { volume: 0.7 });
+  const [playWhistle] = useSound(`${apiBasePath}/sounds/slide-whistle.mp3`, { volume: 0.5 });
 
   // Music
   const [playMusic, { stop: stopMusic }] = useSound(`${apiBasePath}/sounds/lofi-study.mp3`, {
@@ -44,6 +49,11 @@ export const SoundProvider = ({ children }) => {
     shuffle: playShuffleSound,
     "door-open": playDoorOpen,
     "door-close": playDoorClose,
+    strike: playFlintStrike,
+    pop: playPop,
+    slam: playSlam,
+    flicker: playFlicker,
+    slide: playWhistle,
   };
 
   const playSoundEffect = (soundType = "click") => {
