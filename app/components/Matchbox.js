@@ -107,7 +107,9 @@ export default function Matchbox() {
         isCandleLit: true,
         matchRotation: -200,
       }));
-      setIsCandleLit(true);
+      setTimeout(() => {
+        setIsCandleLit(true);
+      }, 850);
 
       // ⏳ Automatically extinguish flame after 10 seconds
       setTimeout(() => {
