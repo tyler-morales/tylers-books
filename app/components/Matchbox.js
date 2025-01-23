@@ -36,7 +36,7 @@ export default function Matchbox() {
     open: { route: "open.png", size: { width: 200, height: 450 } },
     match: { route: "match.png", size: { width: 15, height: 40 } },
     back: { route: "flint.png", size: { width: 200, height: 200 } },
-    flame: { route: "flame.gif", size: { width: 30, height: 60 } }, // 🔥 GIF
+    flame: { route: "flame-2.gif", size: { width: 30, height: 60 } }, // 🔥 GIF
     candle: { route: "candle.png", size: { width: 80, height: 200 } }, // 🕯️ Candle
   };
 
@@ -64,10 +64,10 @@ export default function Matchbox() {
 
     if (matchState.state === "open") {
       setMatchboxState("back"); // Move to Flint Side
-      moveMatch(70, 10); // Snap match to bottom
+      moveMatch(50, 20); // Snap match to bottom
     } else if (matchState.state === "back") {
       console.log("🔥 ignited 🔥"); // Ignition event
-      moveMatch(170, matchState.position.y); // Move match right
+      moveMatch(185, 5); // Move match right
       igniteMatch(); // Show flame
     }
   };
@@ -135,16 +135,16 @@ export default function Matchbox() {
               {/* 🔥 Flame GIF - Appears when ignited */}
               {matchState.isIgnited && (
                 <motion.div
-                  className="absolute -top-[20px] -right-[13px] w-[40px]"
+                  className="absolute -top-[45px] -right-[10px] w-[40px] z-50"
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1.15 }}
                   transition={{ duration: 1.2, ease: "anticipate" }}
                 >
                   <Image
                     alt="Flame"
                     width={100}
                     height={100}
-                    src={`${apiBasePath}/images/assets/matches/flame.gif`}
+                    src={`${apiBasePath}/images/assets/matches/${matchImages.flame.route}`}
                     unoptimized
                   />
                 </motion.div>
@@ -156,9 +156,9 @@ export default function Matchbox() {
         {/* 🏠 Matchbox */}
         <motion.div
           className="z-[2] relative"
-          initial={{ scale: 0.95 }}
-          animate={{ scale: [1, 0.98, 1] }} // 📌 Subtle squish effect on click
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          initial={{ scale: 0.7 }}
+          animate={{ scale: [0.5, 1] }} // 📌 Subtle squish effect on click
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         >
           <Image
             alt="Matchbox"
