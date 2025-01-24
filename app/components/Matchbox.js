@@ -101,6 +101,7 @@ export default function Matchbox() {
 
     // light the candle after 1.5s
     setTimeout(() => {
+      playSoundEffect("switch");
       playSoundEffect("flicker");
       setMatchState((prev) => ({
         ...prev,
