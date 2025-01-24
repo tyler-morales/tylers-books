@@ -1,8 +1,9 @@
 # 📚 Tyler's Books
 **Tyler's Books** is a digital bookshelf that showcases books I've read, curated with a blend of nostalgia and interactive design. This project brings a playful yet modern touch to book collection displays, combining motion effects, animations, and fun interactions.
 
-<img width="1512" alt="home-view" src="https://github.com/user-attachments/assets/ad010de2-31c4-4e49-9631-f2e202a53615" />
+https://github.com/user-attachments/assets/50aaf0e5-3bc2-473d-a0c5-da01bf6c362b
 
+Press play to watch the demo.
 
 ## 🌟 Features
 
