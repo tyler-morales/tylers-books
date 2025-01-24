@@ -23,9 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <BackgroundProvider>
-          {/* <main className="h-screen"> */}
           <SoundProvider>{children}</SoundProvider>
-          {/* </main> */}
         </BackgroundProvider>
       </body>
     </html>
