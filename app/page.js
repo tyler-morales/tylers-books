@@ -161,8 +161,6 @@ export default function Home() {
     };
   }, []);
 
-  console.log(isCandleLit);
-
   return (
     <main
       className={`h-screen transition-all duration-500 ${
