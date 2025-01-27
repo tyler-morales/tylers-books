@@ -163,11 +163,12 @@ export default function Home() {
 
   return (
     <main
-      className={`h-screen transition-all duration-500 ${
-        isCandleLit
-          ? "bg-gradient-to-t from-yellow-200 to-white"
-          : "bg-gradient-to-t from-slate-900"
-      }`}
+      style={{
+        background: `radial-gradient(ellipse at bottom, ${isCandleLit ? "red" : "gray"} 0%, ${
+          isCandleLit ? "orange" : "black"
+        } 80%`,
+      }}
+      className={`h-screen transition-all duration-500 `}
     >
       <nav
         style={{
